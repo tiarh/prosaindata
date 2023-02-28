@@ -32,6 +32,9 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-scrape_cbnc(3)
+from google.colab import drive
+drive.mount('/content/drive', force_remount=True)
+path = '/content/drive/My Drive/prosaindata'
+
 -------------------
 
