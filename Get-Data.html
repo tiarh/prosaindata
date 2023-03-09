@@ -1,0 +1,995 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Getdata &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Get-Data';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Crawling Twitter" href="CrawlingTwitter.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">TUGAS</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="CrawlingBerita.html">Crawling Berita</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CrawlingPTA.html">Crawling PTA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CrawlingTwitter.html">Crawling Twitter</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Getdata</a></li>
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FGet-Data.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Get-Data.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Getdata</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Getdata</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#get-data-ambil-data-dari-beberapa-sumber-skenario">Get data : ambil data dari beberapa sumber skenario</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah">Langkah-langkah:</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="tex2jax_ignore mathjax_ignore section" id="getdata">
+<h1>Getdata<a class="headerlink" href="#getdata" title="Permalink to this heading">#</a></h1>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="get-data-ambil-data-dari-beberapa-sumber-skenario">
+<h1>Get data : ambil data dari beberapa sumber skenario<a class="headerlink" href="#get-data-ambil-data-dari-beberapa-sumber-skenario" title="Permalink to this heading">#</a></h1>
+<p>A. Sepal length   : dari posgresql local</p>
+<p>B. sepal width  	: di postgeql elephantsql</p>
+<p>C. petal length 	: di mysql local</p>
+<p>D.petal width +class  : di sql server</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="langkah-langkah">
+<h1>Langkah-langkah:<a class="headerlink" href="#langkah-langkah" title="Permalink to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Install library SQLAlchemy, Pandas, psycopg2-binary, pyodbc, mysql-connector-python</p></li>
+<li><p>import semua library yang diperlukan</p></li>
+<li><p>buat koneksi ke masing-masing database dengan SQLAlchemy</p></li>
+<li><p>ambil data dari table dengan skenario seperti diatas</p></li>
+<li><p>membaca data dari berbagai database kedalam dataframe</p></li>
+<li><p>menggabungkan data dari berbagai database dengan menggunakan concat</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">SQLAlchemy</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
+Requirement already satisfied: SQLAlchemy in /usr/local/lib/python3.9/dist-packages (1.4.46)
+Requirement already satisfied: greenlet!=0.4.17 in /usr/local/lib/python3.9/dist-packages (from SQLAlchemy) (2.0.2)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pandas</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
+Requirement already satisfied: pandas in /usr/local/lib/python3.9/dist-packages (1.3.5)
+Requirement already satisfied: python-dateutil&gt;=2.7.3 in /usr/local/lib/python3.9/dist-packages (from pandas) (2.8.2)
+Requirement already satisfied: numpy&gt;=1.17.3 in /usr/local/lib/python3.9/dist-packages (from pandas) (1.22.4)
+Requirement already satisfied: pytz&gt;=2017.3 in /usr/local/lib/python3.9/dist-packages (from pandas) (2022.7.1)
+Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.9/dist-packages (from python-dateutil&gt;=2.7.3-&gt;pandas) (1.15.0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">psycopg2</span><span class="o">-</span><span class="n">binary</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting psycopg2-binary
+  Downloading psycopg2_binary-2.9.5-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.0 MB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/3.0 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">3.0/3.0 MB</span> <span class=" -Color -Color-Red">127.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">3.0/3.0 MB</span> <span class=" -Color -Color-Red">71.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: psycopg2-binary
+Successfully installed psycopg2-binary-2.9.5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pyodbc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting pyodbc
+  Downloading pyodbc-4.0.35-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (329 kB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/329.8 KB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">329.8/329.8 KB</span> <span class=" -Color -Color-Red">18.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: pyodbc
+Successfully installed pyodbc-4.0.35
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">mysql</span><span class="o">-</span><span class="n">connector</span><span class="o">-</span><span class="n">python</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting mysql-connector-python
+  Downloading mysql_connector_python-8.0.32-cp39-cp39-manylinux1_x86_64.whl (23.5 MB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/23.5 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">5.0/23.5 MB</span> <span class=" -Color -Color-Red">151.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">10.4/23.5 MB</span> <span class=" -Color -Color-Red">161.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━ <span class=" -Color -Color-Green">17.8/23.5 MB</span> <span class=" -Color -Color-Red">215.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺ <span class=" -Color -Color-Green">23.0/23.5 MB</span> <span class=" -Color -Color-Red">179.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">23.5/23.5 MB</span> <span class=" -Color -Color-Red">173.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">23.5/23.5 MB</span> <span class=" -Color -Color-Red">173.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">23.5/23.5 MB</span> <span class=" -Color -Color-Red">75.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: protobuf&lt;=3.20.3,&gt;=3.11.0 in /usr/local/lib/python3.9/dist-packages (from mysql-connector-python) (3.19.6)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: mysql-connector-python
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed mysql-connector-python-8.0.32
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="c1">#import pyodbc</span>
+<span class="kn">import</span> <span class="nn">sqlalchemy</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">text</span>
+
+
+<span class="c1">#server = &#39;DESKTOP-BQEVUFH\SQLEXPRESS&#39;</span>
+<span class="c1">#database = &#39;prosaindata&#39;</span>
+<span class="c1">#username = &#39;DESKTOP-BQEVUFH\Ikhtiar&#39;</span>
+<span class="c1">#password = &#39;&#39;</span>
+
+<span class="n">DRIVER</span> <span class="o">=</span> <span class="s2">&quot;ODBC Driver 17 for SQL Server&quot;</span>
+<span class="n">USERNAME</span> <span class="o">=</span> <span class="s2">&quot;sa&quot;</span>
+<span class="n">PSSWD</span> <span class="o">=</span> <span class="s2">&quot;123455&quot;</span>
+<span class="n">SERVERNAME</span> <span class="o">=</span> <span class="s2">&quot;DESKTOP-BQEVUFH&quot;</span>
+<span class="n">INSTANCENAME</span> <span class="o">=</span> <span class="s2">&quot;\SQLEXPRESS&quot;</span>
+<span class="n">DB</span> <span class="o">=</span> <span class="s2">&quot;prosaindata&quot;</span>
+<span class="n">TABLE</span> <span class="o">=</span> <span class="s2">&quot;dbo.prosain&quot;</span>
+
+
+
+<span class="n">mysqlEngine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;mysql+mysqlconnector://root:@localhost:3306/prosaindata&#39;</span><span class="p">)</span>
+<span class="n">pgEngine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;postgresql://postgres:root@localhost/prosain&#39;</span><span class="p">)</span>
+<span class="c1">#sqlServerEngine = create_engine(&#39;mssql+pyodbc://DESKTOP-BQEVUFH\Ikhtiar:@DESKTOP-BQEVUFH\SQLEXPRESS/prosaindata?driver=ODBC+Driver+17+for+SQL+Server&#39;)</span>
+<span class="n">ElephantEngine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;postgresql://nvbxxywe:30dMEzpIkS1wsWpnH3vvfPFHXlcThP0n@floppy.db.elephantsql.com/nvbxxywe&#39;</span><span class="p">)</span>
+<span class="c1">#sqlServerEngine = pyodbc.connect(&#39;DRIVER={ODBC Driver 17 for SQL Server};SERVER=&#39;+server+&#39;;DATABASE=&#39;+database+&#39;;UID=&#39;+username+&#39;;PWD=&#39;+ password)</span>
+<span class="n">sqlServerEngine</span> <span class="o">=</span> <span class="n">sqlalchemy</span><span class="o">.</span><span class="n">create_engine</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;mssql+pyodbc://</span><span class="si">{</span><span class="n">USERNAME</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">PSSWD</span><span class="si">}</span><span class="s2">@</span><span class="si">{</span><span class="n">SERVERNAME</span><span class="si">}{</span><span class="n">INSTANCENAME</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">DB</span><span class="si">}</span><span class="s2">?driver=</span><span class="si">{</span><span class="n">DRIVER</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fast_executemany</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># query untuk mengambil data dari tabel</span>
+<span class="c1"># mysqlQuery = text(&quot;SELECT id, petallength FROM iris&quot;)</span>
+<span class="n">ElephantServerQuery</span> <span class="o">=</span> <span class="n">text</span><span class="p">(</span><span class="s2">&quot;SELECT sepalwidth FROM prosaindata&quot;</span><span class="p">)</span>
+<span class="n">mysqlQuery</span> <span class="o">=</span> <span class="n">text</span><span class="p">(</span><span class="s2">&quot;SELECT petallength FROM prosaindata&quot;</span><span class="p">)</span>
+<span class="n">pgQuery</span> <span class="o">=</span> <span class="n">text</span><span class="p">(</span><span class="s2">&quot;SELECT sepallength FROM prosaindata&quot;</span><span class="p">)</span>
+<span class="n">sqlServerQuery</span> <span class="o">=</span> <span class="n">text</span><span class="p">(</span><span class="s2">&quot;SELECT petalwidth, class FROM dbo.prosain&quot;</span><span class="p">)</span>
+
+<span class="c1"># membaca data dari database ke dalam DataFrame</span>
+<span class="k">with</span> <span class="n">mysqlEngine</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">mysqlConn</span><span class="p">:</span>
+    <span class="n">mysqlDf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">mysqlQuery</span><span class="p">,</span> <span class="n">mysqlConn</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">pgEngine</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">pgConn</span><span class="p">:</span>
+    <span class="n">pgDf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">pgQuery</span><span class="p">,</span> <span class="n">pgConn</span><span class="p">)</span>
+    
+<span class="k">with</span> <span class="n">sqlServerEngine</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">sqlServerConn</span><span class="p">:</span>
+    <span class="n">sqlServerDf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">sqlServerQuery</span><span class="p">,</span> <span class="n">sqlServerConn</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">ElephantEngine</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">ElephantServerConn</span><span class="p">:</span>
+    <span class="n">ElephantServerDf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">ElephantServerQuery</span><span class="p">,</span> <span class="n">ElephantServerConn</span><span class="p">)</span>
+    
+<span class="c1"># menampilkan lima baris pertama dari DataFrame</span>
+<span class="c1"># print(pgDf.head())</span>
+<span class="c1"># print(mysqlDf.head())</span>
+<span class="c1"># print(sqlServerDf.head())</span>
+
+
+<span class="c1"># # concate dataFrame (Cara 1)</span>
+<span class="n">new_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">mysqlDf</span><span class="p">,</span> <span class="n">pgDf</span><span class="p">,</span> <span class="n">ElephantServerDf</span><span class="p">,</span> <span class="n">sqlServerDf</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">new_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+<span class="c1"># # merge dataFrame (Cara 2)</span>
+<span class="c1"># merged_df = pd.merge(pgDf, mysqlDf, on=&#39;id&#39;)</span>
+<span class="c1"># merged_df.head()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">MySQLInterfaceError</span>Traceback (most recent call last)
+<span class="nn">/usr/local/lib/python3.9/dist-packages/mysql/connector/connection_cext.py</span> in <span class="ni">_open_connection</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">287</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">288</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_cmysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">**</span><span class="n">cnx_kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">289</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_cmysql</span><span class="o">.</span><span class="n">converter_str_fallback</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_converter_str_fallback</span>
+
+<span class="ne">MySQLInterfaceError</span>: Can&#39;t connect to MySQL server on &#39;localhost:3306&#39; (99)
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">DatabaseError</span>Traceback (most recent call last)
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/engine/base.py</span> in <span class="ni">_wrap_pool_connect</span><span class="nt">(self, fn, connection)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3360</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">3361</span>             <span class="k">return</span> <span class="n">fn</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">3362</span>         <span class="k">except</span> <span class="n">dialect</span><span class="o">.</span><span class="n">dbapi</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/base.py</span> in <span class="ni">connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">326</span><span class="w">         </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">327</span><span class="sd">         return _ConnectionFairy._checkout(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">328</span><span class="sd"> </span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/base.py</span> in <span class="ni">_checkout</span><span class="nt">(cls, pool, threadconns, fairy)</span>
+<span class="g g-Whitespace">    </span><span class="mi">893</span><span class="sd">         if not fairy:</span>
+<span class="ne">--&gt; </span><span class="mi">894</span><span class="sd">             fairy = _ConnectionRecord.checkout(pool)</span>
+<span class="g g-Whitespace">    </span><span class="mi">895</span><span class="sd"> </span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/base.py</span> in <span class="ni">checkout</span><span class="nt">(cls, pool)</span>
+<span class="g g-Whitespace">    </span><span class="mi">492</span><span class="sd">     def checkout(cls, pool):</span>
+<span class="ne">--&gt; </span><span class="mi">493</span><span class="sd">         rec = pool._do_get()</span>
+<span class="g g-Whitespace">    </span><span class="mi">494</span><span class="sd">         try:</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/impl.py</span> in <span class="ni">_do_get</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">145</span><span class="sd">                 with util.safe_reraise():</span>
+<span class="ne">--&gt; </span><span class="mi">146</span><span class="sd">                     self._dec_overflow()</span>
+<span class="g g-Whitespace">    </span><span class="mi">147</span><span class="sd">         else:</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/util/langhelpers.py</span> in <span class="ni">__exit__</span><span class="nt">(self, type_, value, traceback)</span>
+<span class="g g-Whitespace">     </span><span class="mi">69</span><span class="sd">             if not self.warn_only:</span>
+<span class="ne">---&gt; </span><span class="mi">70</span><span class="sd">                 compat.raise_(</span>
+<span class="g g-Whitespace">     </span><span class="mi">71</span><span class="sd">                     exc_value,</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/util/compat.py</span> in <span class="ni">raise_</span><span class="nt">(***failed resolving arguments***)</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span><span class="sd">         try:</span>
+<span class="ne">--&gt; </span><span class="mi">211</span><span class="sd">             raise exception</span>
+<span class="g g-Whitespace">    </span><span class="mi">212</span><span class="sd">         finally:</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/impl.py</span> in <span class="ni">_do_get</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">142</span><span class="sd">             try:</span>
+<span class="ne">--&gt; </span><span class="mi">143</span><span class="sd">                 return self._create_connection()</span>
+<span class="g g-Whitespace">    </span><span class="mi">144</span><span class="sd">             except:</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/base.py</span> in <span class="ni">_create_connection</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">272</span><span class="sd"> </span>
+<span class="ne">--&gt; </span><span class="mi">273</span><span class="sd">         return _ConnectionRecord(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">274</span><span class="sd"> </span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/base.py</span> in <span class="ni">__init__</span><span class="nt">(self, pool, connect)</span>
+<span class="g g-Whitespace">    </span><span class="mi">387</span><span class="sd">         if connect:</span>
+<span class="ne">--&gt; </span><span class="mi">388</span><span class="sd">             self.__connect()</span>
+<span class="g g-Whitespace">    </span><span class="mi">389</span><span class="sd">         self.finalize_callback = deque()</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/base.py</span> in <span class="ni">__connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">690</span><span class="sd">             with util.safe_reraise():</span>
+<span class="ne">--&gt; </span><span class="mi">691</span><span class="sd">                 pool.logger.debug(&quot;Error on connect(): %s&quot;, e)</span>
+<span class="g g-Whitespace">    </span><span class="mi">692</span><span class="sd">         else:</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/util/langhelpers.py</span> in <span class="ni">__exit__</span><span class="nt">(self, type_, value, traceback)</span>
+<span class="g g-Whitespace">     </span><span class="mi">69</span><span class="sd">             if not self.warn_only:</span>
+<span class="ne">---&gt; </span><span class="mi">70</span><span class="sd">                 compat.raise_(</span>
+<span class="g g-Whitespace">     </span><span class="mi">71</span><span class="sd">                     exc_value,</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/util/compat.py</span> in <span class="ni">raise_</span><span class="nt">(***failed resolving arguments***)</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span><span class="sd">         try:</span>
+<span class="ne">--&gt; </span><span class="mi">211</span><span class="sd">             raise exception</span>
+<span class="g g-Whitespace">    </span><span class="mi">212</span><span class="sd">         finally:</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/base.py</span> in <span class="ni">__connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">685</span><span class="sd">             self.starttime = time.time()</span>
+<span class="ne">--&gt; </span><span class="mi">686</span><span class="sd">             self.dbapi_connection = connection = pool._invoke_creator(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">687</span><span class="sd">             pool.logger.debug(&quot;Created new connection %r&quot;, connection)</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/engine/create.py</span> in <span class="ni">connect</span><span class="nt">(connection_record)</span>
+<span class="g g-Whitespace">    </span><span class="mi">577</span><span class="sd">                         return connection</span>
+<span class="ne">--&gt; </span><span class="mi">578</span><span class="sd">             return dialect.connect(*cargs, **cparams)</span>
+<span class="g g-Whitespace">    </span><span class="mi">579</span><span class="sd"> </span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/engine/default.py</span> in <span class="ni">connect</span><span class="nt">(self, *cargs, **cparams)</span>
+<span class="g g-Whitespace">    </span><span class="mi">597</span><span class="sd">         # inherits the docstring from interfaces.Dialect.connect</span>
+<span class="ne">--&gt; </span><span class="mi">598</span><span class="sd">         return self.dbapi.connect(*cargs, **cparams)</span>
+<span class="g g-Whitespace">    </span><span class="mi">599</span><span class="sd"> </span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/mysql/connector/pooling.py</span> in <span class="ni">connect</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">292</span><span class="sd">     if CMySQLConnection and not use_pure:</span>
+<span class="ne">--&gt; </span><span class="mi">293</span><span class="sd">         return CMySQLConnection(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">294</span><span class="sd">     return MySQLConnection(*args, **kwargs)</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/mysql/connector/connection_cext.py</span> in <span class="ni">__init__</span><span class="nt">(self, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span><span class="sd">         if kwargs:</span>
+<span class="ne">--&gt; </span><span class="mi">118</span><span class="sd">             self.connect(**kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">119</span><span class="sd"> </span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/mysql/connector/abstracts.py</span> in <span class="ni">connect</span><span class="nt">(self, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1177</span><span class="sd">         self.disconnect()</span>
+<span class="ne">-&gt; </span><span class="mi">1178</span><span class="sd">         self._open_connection()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1179</span><span class="sd">         # Server does not allow to run any other statement different from ALTER</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/mysql/connector/connection_cext.py</span> in <span class="ni">_open_connection</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">292</span><span class="sd">         except MySQLInterfaceError as err:</span>
+<span class="ne">--&gt; </span><span class="mi">293</span><span class="sd">             raise get_mysql_exception(</span>
+<span class="g g-Whitespace">    </span><span class="mi">294</span><span class="sd">                 msg=err.msg, errno=err.errno, sqlstate=err.sqlstate</span>
+
+<span class="ne">DatabaseError</span>: 2003 (HY000): Can&#39;t connect to MySQL server on &#39;localhost:3306&#39; (99)
+
+<span class="sd">The above exception was the direct cause of the following exception:</span>
+
+<span class="ne">DatabaseError</span>Traceback (most recent call last)
+<span class="sd">&lt;ipython-input-6-88a01e37c49d&gt; in &lt;module&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span><span class="sd"> # membaca data dari database ke dalam DataFrame</span>
+<span class="ne">---&gt; </span><span class="mi">38</span><span class="sd"> with mysqlEngine.connect() as mysqlConn:</span>
+<span class="g g-Whitespace">     </span><span class="mi">39</span><span class="sd">     mysqlDf = pd.read_sql(mysqlQuery, mysqlConn)</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span><span class="sd"> </span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/engine/base.py</span> in <span class="ni">connect</span><span class="nt">(self, close_with_result)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3313</span><span class="sd">         &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">3314</span> 
+<span class="ne">-&gt; </span><span class="mi">3315</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection_cls</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">close_with_result</span><span class="o">=</span><span class="n">close_with_result</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3316</span> 
+<span class="g g-Whitespace">   </span><span class="mi">3317</span>     <span class="nd">@util</span><span class="o">.</span><span class="n">deprecated</span><span class="p">(</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/engine/base.py</span> in <span class="ni">__init__</span><span class="nt">(self, engine, connection, close_with_result, _branch_from, _execution_options, _dispatch, _has_events, _allow_revalidate)</span>
+<span class="g g-Whitespace">     </span><span class="mi">94</span>                 <span class="n">connection</span>
+<span class="g g-Whitespace">     </span><span class="mi">95</span>                 <span class="k">if</span> <span class="n">connection</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="ne">---&gt; </span><span class="mi">96</span>                 <span class="k">else</span> <span class="n">engine</span><span class="o">.</span><span class="n">raw_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">97</span>             <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">98</span><span class="w"> </span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/engine/base.py</span> in <span class="ni">raw_connection</span><span class="nt">(self, _connection)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3392</span><span class="w"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">3393</span><span class="w">         </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">3394</span><span class="sd">         return self._wrap_pool_connect(self.pool.connect, _connection)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3395</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">3396</span><span class="sd"> </span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/engine/base.py</span> in <span class="ni">_wrap_pool_connect</span><span class="nt">(self, fn, connection)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3362</span><span class="sd">         except dialect.dbapi.Error as e:</span>
+<span class="g g-Whitespace">   </span><span class="mi">3363</span><span class="sd">             if connection is None:</span>
+<span class="ne">-&gt; </span><span class="mi">3364</span><span class="sd">                 Connection._handle_dbapi_exception_noconnection(</span>
+<span class="g g-Whitespace">   </span><span class="mi">3365</span><span class="sd">                     e, dialect, self</span>
+<span class="g g-Whitespace">   </span><span class="mi">3366</span><span class="sd">                 )</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/engine/base.py</span> in <span class="ni">_handle_dbapi_exception_noconnection</span><span class="nt">(cls, e, dialect, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2196</span><span class="sd">             util.raise_(newraise, with_traceback=exc_info[2], from_=e)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2197</span><span class="sd">         elif should_wrap:</span>
+<span class="ne">-&gt; </span><span class="mi">2198</span><span class="sd">             util.raise_(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2199</span><span class="sd">                 sqlalchemy_exception, with_traceback=exc_info[2], from_=e</span>
+<span class="g g-Whitespace">   </span><span class="mi">2200</span><span class="sd">             )</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/util/compat.py</span> in <span class="ni">raise_</span><span class="nt">(***failed resolving arguments***)</span>
+<span class="g g-Whitespace">    </span><span class="mi">209</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span><span class="sd">         try:</span>
+<span class="ne">--&gt; </span><span class="mi">211</span><span class="sd">             raise exception</span>
+<span class="g g-Whitespace">    </span><span class="mi">212</span><span class="sd">         finally:</span>
+<span class="g g-Whitespace">    </span><span class="mi">213</span><span class="sd">             # credit to</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/engine/base.py</span> in <span class="ni">_wrap_pool_connect</span><span class="nt">(self, fn, connection)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3359</span><span class="sd">         dialect = self.dialect</span>
+<span class="g g-Whitespace">   </span><span class="mi">3360</span><span class="sd">         try:</span>
+<span class="ne">-&gt; </span><span class="mi">3361</span><span class="sd">             return fn()</span>
+<span class="g g-Whitespace">   </span><span class="mi">3362</span><span class="sd">         except dialect.dbapi.Error as e:</span>
+<span class="g g-Whitespace">   </span><span class="mi">3363</span><span class="sd">             if connection is None:</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/base.py</span> in <span class="ni">connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">325</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">326</span><span class="sd">         &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">327</span>         <span class="k">return</span> <span class="n">_ConnectionFairy</span><span class="o">.</span><span class="n">_checkout</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">328</span> 
+<span class="g g-Whitespace">    </span><span class="mi">329</span>     <span class="k">def</span> <span class="nf">_return_conn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/base.py</span> in <span class="ni">_checkout</span><span class="nt">(cls, pool, threadconns, fairy)</span>
+<span class="g g-Whitespace">    </span><span class="mi">892</span>     <span class="k">def</span> <span class="nf">_checkout</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">pool</span><span class="p">,</span> <span class="n">threadconns</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fairy</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">893</span>         <span class="k">if</span> <span class="ow">not</span> <span class="n">fairy</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">894</span>             <span class="n">fairy</span> <span class="o">=</span> <span class="n">_ConnectionRecord</span><span class="o">.</span><span class="n">checkout</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">895</span> 
+<span class="g g-Whitespace">    </span><span class="mi">896</span>             <span class="n">fairy</span><span class="o">.</span><span class="n">_pool</span> <span class="o">=</span> <span class="n">pool</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/base.py</span> in <span class="ni">checkout</span><span class="nt">(cls, pool)</span>
+<span class="g g-Whitespace">    </span><span class="mi">491</span>     <span class="nd">@classmethod</span>
+<span class="g g-Whitespace">    </span><span class="mi">492</span>     <span class="k">def</span> <span class="nf">checkout</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">pool</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">493</span>         <span class="n">rec</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">_do_get</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">494</span>         <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">495</span>             <span class="n">dbapi_connection</span> <span class="o">=</span> <span class="n">rec</span><span class="o">.</span><span class="n">get_connection</span><span class="p">()</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/impl.py</span> in <span class="ni">_do_get</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">144</span>             <span class="k">except</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">145</span>                 <span class="k">with</span> <span class="n">util</span><span class="o">.</span><span class="n">safe_reraise</span><span class="p">():</span>
+<span class="ne">--&gt; </span><span class="mi">146</span>                     <span class="bp">self</span><span class="o">.</span><span class="n">_dec_overflow</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">147</span>         <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">148</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_get</span><span class="p">()</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/util/langhelpers.py</span> in <span class="ni">__exit__</span><span class="nt">(self, type_, value, traceback)</span>
+<span class="g g-Whitespace">     </span><span class="mi">68</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_exc_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># remove potential circular references</span>
+<span class="g g-Whitespace">     </span><span class="mi">69</span>             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">warn_only</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">70</span>                 <span class="n">compat</span><span class="o">.</span><span class="n">raise_</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">71</span>                     <span class="n">exc_value</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">72</span>                     <span class="n">with_traceback</span><span class="o">=</span><span class="n">exc_tb</span><span class="p">,</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/util/compat.py</span> in <span class="ni">raise_</span><span class="nt">(***failed resolving arguments***)</span>
+<span class="g g-Whitespace">    </span><span class="mi">209</span> 
+<span class="g g-Whitespace">    </span><span class="mi">210</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">211</span>             <span class="k">raise</span> <span class="n">exception</span>
+<span class="g g-Whitespace">    </span><span class="mi">212</span>         <span class="k">finally</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">213</span>             <span class="c1"># credit to</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/impl.py</span> in <span class="ni">_do_get</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">141</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inc_overflow</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">142</span>             <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">143</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">144</span>             <span class="k">except</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">145</span>                 <span class="k">with</span> <span class="n">util</span><span class="o">.</span><span class="n">safe_reraise</span><span class="p">():</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/base.py</span> in <span class="ni">_create_connection</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">271</span><span class="w">         </span><span class="sd">&quot;&quot;&quot;Called by subclasses to create a new ConnectionRecord.&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">272</span> 
+<span class="ne">--&gt; </span><span class="mi">273</span>         <span class="k">return</span> <span class="n">_ConnectionRecord</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">274</span> 
+<span class="g g-Whitespace">    </span><span class="mi">275</span>     <span class="k">def</span> <span class="nf">_invalidate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection</span><span class="p">,</span> <span class="n">exception</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_checkin</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/base.py</span> in <span class="ni">__init__</span><span class="nt">(self, pool, connect)</span>
+<span class="g g-Whitespace">    </span><span class="mi">386</span>         <span class="bp">self</span><span class="o">.</span><span class="n">__pool</span> <span class="o">=</span> <span class="n">pool</span>
+<span class="g g-Whitespace">    </span><span class="mi">387</span>         <span class="k">if</span> <span class="n">connect</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">388</span>             <span class="bp">self</span><span class="o">.</span><span class="n">__connect</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">389</span>         <span class="bp">self</span><span class="o">.</span><span class="n">finalize_callback</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">390</span> 
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/base.py</span> in <span class="ni">__connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">689</span>         <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">690</span>             <span class="k">with</span> <span class="n">util</span><span class="o">.</span><span class="n">safe_reraise</span><span class="p">():</span>
+<span class="ne">--&gt; </span><span class="mi">691</span>                 <span class="n">pool</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Error on connect(): </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">692</span>         <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">693</span>             <span class="c1"># in SQLAlchemy 1.4 the first_connect event is not used by</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/util/langhelpers.py</span> in <span class="ni">__exit__</span><span class="nt">(self, type_, value, traceback)</span>
+<span class="g g-Whitespace">     </span><span class="mi">68</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_exc_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># remove potential circular references</span>
+<span class="g g-Whitespace">     </span><span class="mi">69</span>             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">warn_only</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">70</span>                 <span class="n">compat</span><span class="o">.</span><span class="n">raise_</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">71</span>                     <span class="n">exc_value</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">72</span>                     <span class="n">with_traceback</span><span class="o">=</span><span class="n">exc_tb</span><span class="p">,</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/util/compat.py</span> in <span class="ni">raise_</span><span class="nt">(***failed resolving arguments***)</span>
+<span class="g g-Whitespace">    </span><span class="mi">209</span> 
+<span class="g g-Whitespace">    </span><span class="mi">210</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">211</span>             <span class="k">raise</span> <span class="n">exception</span>
+<span class="g g-Whitespace">    </span><span class="mi">212</span>         <span class="k">finally</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">213</span>             <span class="c1"># credit to</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/base.py</span> in <span class="ni">__connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">684</span>         <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">685</span>             <span class="bp">self</span><span class="o">.</span><span class="n">starttime</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">686</span>             <span class="bp">self</span><span class="o">.</span><span class="n">dbapi_connection</span> <span class="o">=</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">_invoke_creator</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">687</span>             <span class="n">pool</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Created new connection </span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">connection</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">688</span>             <span class="bp">self</span><span class="o">.</span><span class="n">fresh</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/engine/create.py</span> in <span class="ni">connect</span><span class="nt">(connection_record)</span>
+<span class="g g-Whitespace">    </span><span class="mi">576</span>                     <span class="k">if</span> <span class="n">connection</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">577</span>                         <span class="k">return</span> <span class="n">connection</span>
+<span class="ne">--&gt; </span><span class="mi">578</span>             <span class="k">return</span> <span class="n">dialect</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">*</span><span class="n">cargs</span><span class="p">,</span> <span class="o">**</span><span class="n">cparams</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">579</span> 
+<span class="g g-Whitespace">    </span><span class="mi">580</span>         <span class="n">creator</span> <span class="o">=</span> <span class="n">pop_kwarg</span><span class="p">(</span><span class="s2">&quot;creator&quot;</span><span class="p">,</span> <span class="n">connect</span><span class="p">)</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/sqlalchemy/engine/default.py</span> in <span class="ni">connect</span><span class="nt">(self, *cargs, **cparams)</span>
+<span class="g g-Whitespace">    </span><span class="mi">596</span>     <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">cargs</span><span class="p">,</span> <span class="o">**</span><span class="n">cparams</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">597</span>         <span class="c1"># inherits the docstring from interfaces.Dialect.connect</span>
+<span class="ne">--&gt; </span><span class="mi">598</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">*</span><span class="n">cargs</span><span class="p">,</span> <span class="o">**</span><span class="n">cparams</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">599</span> 
+<span class="g g-Whitespace">    </span><span class="mi">600</span>     <span class="k">def</span> <span class="nf">create_connect_args</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/mysql/connector/pooling.py</span> in <span class="ni">connect</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">291</span> 
+<span class="g g-Whitespace">    </span><span class="mi">292</span>     <span class="k">if</span> <span class="n">CMySQLConnection</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">use_pure</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">293</span>         <span class="k">return</span> <span class="n">CMySQLConnection</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">294</span>     <span class="k">return</span> <span class="n">MySQLConnection</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">295</span> 
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/mysql/connector/connection_cext.py</span> in <span class="ni">__init__</span><span class="nt">(self, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">116</span> 
+<span class="g g-Whitespace">    </span><span class="mi">117</span>         <span class="k">if</span> <span class="n">kwargs</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">118</span>             <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">119</span> 
+<span class="g g-Whitespace">    </span><span class="mi">120</span>     <span class="k">def</span> <span class="nf">_add_default_conn_attrs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/mysql/connector/abstracts.py</span> in <span class="ni">connect</span><span class="nt">(self, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1176</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1177</span>         <span class="bp">self</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
+<span class="ne">-&gt; </span><span class="mi">1178</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_open_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1179</span>         <span class="c1"># Server does not allow to run any other statement different from ALTER</span>
+<span class="g g-Whitespace">   </span><span class="mi">1180</span>         <span class="c1"># when user&#39;s password has been expired.</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/mysql/connector/connection_cext.py</span> in <span class="ni">_open_connection</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">291</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">converter</span><span class="o">.</span><span class="n">str_fallback</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_converter_str_fallback</span>
+<span class="g g-Whitespace">    </span><span class="mi">292</span>         <span class="k">except</span> <span class="n">MySQLInterfaceError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">293</span>             <span class="k">raise</span> <span class="n">get_mysql_exception</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">294</span>                 <span class="n">msg</span><span class="o">=</span><span class="n">err</span><span class="o">.</span><span class="n">msg</span><span class="p">,</span> <span class="n">errno</span><span class="o">=</span><span class="n">err</span><span class="o">.</span><span class="n">errno</span><span class="p">,</span> <span class="n">sqlstate</span><span class="o">=</span><span class="n">err</span><span class="o">.</span><span class="n">sqlstate</span>
+<span class="g g-Whitespace">    </span><span class="mi">295</span>             <span class="p">)</span> <span class="kn">from</span> <span class="nn">err</span>
+
+<span class="ne">DatabaseError</span>: (mysql.connector.errors.DatabaseError) 2003 (HY000): Can&#39;t connect to MySQL server on &#39;localhost:3306&#39; (99)
+<span class="p">(</span><span class="n">Background</span> <span class="n">on</span> <span class="n">this</span> <span class="n">error</span> <span class="n">at</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">sqlalche</span><span class="o">.</span><span class="n">me</span><span class="o">/</span><span class="n">e</span><span class="o">/</span><span class="mi">14</span><span class="o">/</span><span class="mi">4</span><span class="n">xp6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="CrawlingTwitter.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Crawling Twitter</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Getdata</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#get-data-ambil-data-dari-beberapa-sumber-skenario">Get data : ambil data dari beberapa sumber skenario</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah">Langkah-langkah:</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

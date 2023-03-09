@@ -1,0 +1,394 @@
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/dist-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/usr/local/lib/python3.9/dist-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/usr/local/lib/python3.9/dist-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/usr/local/lib/python3.9/dist-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 647, in run_until_complete
+    return future.result()
+  File "/usr/local/lib/python3.9/dist-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/usr/local/lib/python3.9/dist-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/usr/local/lib/python3.9/dist-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import pandas as pd
+#import pyodbc
+import sqlalchemy
+from sqlalchemy import create_engine
+from sqlalchemy import text
+
+
+#server = 'DESKTOP-BQEVUFH\SQLEXPRESS'
+#database = 'prosaindata'
+#username = 'DESKTOP-BQEVUFH\Ikhtiar'
+#password = ''
+
+DRIVER = "ODBC Driver 17 for SQL Server"
+USERNAME = "sa"
+PSSWD = "123455"
+SERVERNAME = "DESKTOP-BQEVUFH"
+INSTANCENAME = "\SQLEXPRESS"
+DB = "prosaindata"
+TABLE = "dbo.prosain"
+
+
+
+mysqlEngine = create_engine('mysql+mysqlconnector://root:@localhost:3306/prosaindata')
+pgEngine = create_engine('postgresql://postgres:root@localhost/prosain')
+#sqlServerEngine = create_engine('mssql+pyodbc://DESKTOP-BQEVUFH\Ikhtiar:@DESKTOP-BQEVUFH\SQLEXPRESS/prosaindata?driver=ODBC+Driver+17+for+SQL+Server')
+ElephantEngine = create_engine('postgresql://nvbxxywe:30dMEzpIkS1wsWpnH3vvfPFHXlcThP0n@floppy.db.elephantsql.com/nvbxxywe')
+#sqlServerEngine = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
+sqlServerEngine = sqlalchemy.create_engine(
+    f"mssql+pyodbc://{USERNAME}:{PSSWD}@{SERVERNAME}{INSTANCENAME}/{DB}?driver={DRIVER}", fast_executemany=True)
+# query untuk mengambil data dari tabel
+# mysqlQuery = text("SELECT id, petallength FROM iris")
+ElephantServerQuery = text("SELECT sepalwidth FROM prosaindata")
+mysqlQuery = text("SELECT petallength FROM prosaindata")
+pgQuery = text("SELECT sepallength FROM prosaindata")
+sqlServerQuery = text("SELECT petalwidth, class FROM dbo.prosain")
+
+# membaca data dari database ke dalam DataFrame
+with mysqlEngine.connect() as mysqlConn:
+    mysqlDf = pd.read_sql(mysqlQuery, mysqlConn)
+
+with pgEngine.connect() as pgConn:
+    pgDf = pd.read_sql(pgQuery, pgConn)
+    
+with sqlServerEngine.connect() as sqlServerConn:
+    sqlServerDf = pd.read_sql(sqlServerQuery, sqlServerConn)
+
+with ElephantEngine.connect() as ElephantServerConn:
+    ElephantServerDf = pd.read_sql(ElephantServerQuery, ElephantServerConn)
+    
+# menampilkan lima baris pertama dari DataFrame
+# print(pgDf.head())
+# print(mysqlDf.head())
+# print(sqlServerDf.head())
+
+
+# # concate dataFrame (Cara 1)
+new_df = pd.concat([mysqlDf, pgDf, ElephantServerDf, sqlServerDf], axis=1)
+new_df.head()
+
+# # merge dataFrame (Cara 2)
+# merged_df = pd.merge(pgDf, mysqlDf, on='id')
+# merged_df.head()
+------------------
+
+[0;31m[0m
+[0;31mMySQLInterfaceError[0mTraceback (most recent call last)
+[0;32m/usr/local/lib/python3.9/dist-packages/mysql/connector/connection_cext.py[0m in [0;36m_open_connection[0;34m(self)[0m
+[1;32m    287[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 288[0;31m             [0mself[0m[0;34m.[0m[0m_cmysql[0m[0;34m.[0m[0mconnect[0m[0;34m([0m[0;34m**[0m[0mcnx_kwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    289[0m             [0mself[0m[0;34m.[0m[0m_cmysql[0m[0;34m.[0m[0mconverter_str_fallback[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_converter_str_fallback[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mMySQLInterfaceError[0m: Can't connect to MySQL server on 'localhost:3306' (99)
+
+The above exception was the direct cause of the following exception:
+
+[0;31mDatabaseError[0mTraceback (most recent call last)
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/engine/base.py[0m in [0;36m_wrap_pool_connect[0;34m(self, fn, connection)[0m
+[1;32m   3360[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 3361[0;31m             [0;32mreturn[0m [0mfn[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   3362[0m         [0;32mexcept[0m [0mdialect[0m[0;34m.[0m[0mdbapi[0m[0;34m.[0m[0mError[0m [0;32mas[0m [0me[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/base.py[0m in [0;36mconnect[0;34m(self)[0m
+[1;32m    326[0m         """
+[0;32m--> 327[0;31m         [0;32mreturn[0m [0m_ConnectionFairy[0m[0;34m.[0m[0m_checkout[0m[0;34m([0m[0mself[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    328[0m [0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/base.py[0m in [0;36m_checkout[0;34m(cls, pool, threadconns, fairy)[0m
+[1;32m    893[0m         [0;32mif[0m [0;32mnot[0m [0mfairy[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 894[0;31m             [0mfairy[0m [0;34m=[0m [0m_ConnectionRecord[0m[0;34m.[0m[0mcheckout[0m[0;34m([0m[0mpool[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    895[0m [0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/base.py[0m in [0;36mcheckout[0;34m(cls, pool)[0m
+[1;32m    492[0m     [0;32mdef[0m [0mcheckout[0m[0;34m([0m[0mcls[0m[0;34m,[0m [0mpool[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 493[0;31m         [0mrec[0m [0;34m=[0m [0mpool[0m[0;34m.[0m[0m_do_get[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    494[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/impl.py[0m in [0;36m_do_get[0;34m(self)[0m
+[1;32m    145[0m                 [0;32mwith[0m [0mutil[0m[0;34m.[0m[0msafe_reraise[0m[0;34m([0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 146[0;31m                     [0mself[0m[0;34m.[0m[0m_dec_overflow[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    147[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/util/langhelpers.py[0m in [0;36m__exit__[0;34m(self, type_, value, traceback)[0m
+[1;32m     69[0m             [0;32mif[0m [0;32mnot[0m [0mself[0m[0;34m.[0m[0mwarn_only[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 70[0;31m                 compat.raise_(
+[0m[1;32m     71[0m                     [0mexc_value[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/util/compat.py[0m in [0;36mraise_[0;34m(***failed resolving arguments***)[0m
+[1;32m    210[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 211[0;31m             [0;32mraise[0m [0mexception[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    212[0m         [0;32mfinally[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/impl.py[0m in [0;36m_do_get[0;34m(self)[0m
+[1;32m    142[0m             [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 143[0;31m                 [0;32mreturn[0m [0mself[0m[0;34m.[0m[0m_create_connection[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    144[0m             [0;32mexcept[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/base.py[0m in [0;36m_create_connection[0;34m(self)[0m
+[1;32m    272[0m [0;34m[0m[0m
+[0;32m--> 273[0;31m         [0;32mreturn[0m [0m_ConnectionRecord[0m[0;34m([0m[0mself[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    274[0m [0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/base.py[0m in [0;36m__init__[0;34m(self, pool, connect)[0m
+[1;32m    387[0m         [0;32mif[0m [0mconnect[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 388[0;31m             [0mself[0m[0;34m.[0m[0m__connect[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    389[0m         [0mself[0m[0;34m.[0m[0mfinalize_callback[0m [0;34m=[0m [0mdeque[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/base.py[0m in [0;36m__connect[0;34m(self)[0m
+[1;32m    690[0m             [0;32mwith[0m [0mutil[0m[0;34m.[0m[0msafe_reraise[0m[0;34m([0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 691[0;31m                 [0mpool[0m[0;34m.[0m[0mlogger[0m[0;34m.[0m[0mdebug[0m[0;34m([0m[0;34m"Error on connect(): %s"[0m[0;34m,[0m [0me[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    692[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/util/langhelpers.py[0m in [0;36m__exit__[0;34m(self, type_, value, traceback)[0m
+[1;32m     69[0m             [0;32mif[0m [0;32mnot[0m [0mself[0m[0;34m.[0m[0mwarn_only[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 70[0;31m                 compat.raise_(
+[0m[1;32m     71[0m                     [0mexc_value[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/util/compat.py[0m in [0;36mraise_[0;34m(***failed resolving arguments***)[0m
+[1;32m    210[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 211[0;31m             [0;32mraise[0m [0mexception[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    212[0m         [0;32mfinally[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/base.py[0m in [0;36m__connect[0;34m(self)[0m
+[1;32m    685[0m             [0mself[0m[0;34m.[0m[0mstarttime[0m [0;34m=[0m [0mtime[0m[0;34m.[0m[0mtime[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 686[0;31m             [0mself[0m[0;34m.[0m[0mdbapi_connection[0m [0;34m=[0m [0mconnection[0m [0;34m=[0m [0mpool[0m[0;34m.[0m[0m_invoke_creator[0m[0;34m([0m[0mself[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    687[0m             [0mpool[0m[0;34m.[0m[0mlogger[0m[0;34m.[0m[0mdebug[0m[0;34m([0m[0;34m"Created new connection %r"[0m[0;34m,[0m [0mconnection[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/engine/create.py[0m in [0;36mconnect[0;34m(connection_record)[0m
+[1;32m    577[0m                         [0;32mreturn[0m [0mconnection[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 578[0;31m             [0;32mreturn[0m [0mdialect[0m[0;34m.[0m[0mconnect[0m[0;34m([0m[0;34m*[0m[0mcargs[0m[0;34m,[0m [0;34m**[0m[0mcparams[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    579[0m [0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/engine/default.py[0m in [0;36mconnect[0;34m(self, *cargs, **cparams)[0m
+[1;32m    597[0m         [0;31m# inherits the docstring from interfaces.Dialect.connect[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 598[0;31m         [0;32mreturn[0m [0mself[0m[0;34m.[0m[0mdbapi[0m[0;34m.[0m[0mconnect[0m[0;34m([0m[0;34m*[0m[0mcargs[0m[0;34m,[0m [0;34m**[0m[0mcparams[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    599[0m [0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/mysql/connector/pooling.py[0m in [0;36mconnect[0;34m(*args, **kwargs)[0m
+[1;32m    292[0m     [0;32mif[0m [0mCMySQLConnection[0m [0;32mand[0m [0;32mnot[0m [0muse_pure[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 293[0;31m         [0;32mreturn[0m [0mCMySQLConnection[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    294[0m     [0;32mreturn[0m [0mMySQLConnection[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/mysql/connector/connection_cext.py[0m in [0;36m__init__[0;34m(self, **kwargs)[0m
+[1;32m    117[0m         [0;32mif[0m [0mkwargs[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 118[0;31m             [0mself[0m[0;34m.[0m[0mconnect[0m[0;34m([0m[0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    119[0m [0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/mysql/connector/abstracts.py[0m in [0;36mconnect[0;34m(self, **kwargs)[0m
+[1;32m   1177[0m         [0mself[0m[0;34m.[0m[0mdisconnect[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1178[0;31m         [0mself[0m[0;34m.[0m[0m_open_connection[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1179[0m         [0;31m# Server does not allow to run any other statement different from ALTER[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/mysql/connector/connection_cext.py[0m in [0;36m_open_connection[0;34m(self)[0m
+[1;32m    292[0m         [0;32mexcept[0m [0mMySQLInterfaceError[0m [0;32mas[0m [0merr[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 293[0;31m             raise get_mysql_exception(
+[0m[1;32m    294[0m                 [0mmsg[0m[0;34m=[0m[0merr[0m[0;34m.[0m[0mmsg[0m[0;34m,[0m [0merrno[0m[0;34m=[0m[0merr[0m[0;34m.[0m[0merrno[0m[0;34m,[0m [0msqlstate[0m[0;34m=[0m[0merr[0m[0;34m.[0m[0msqlstate[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mDatabaseError[0m: 2003 (HY000): Can't connect to MySQL server on 'localhost:3306' (99)
+
+The above exception was the direct cause of the following exception:
+
+[0;31mDatabaseError[0mTraceback (most recent call last)
+[0;32m<ipython-input-6-88a01e37c49d>[0m in [0;36m<module>[0;34m[0m
+[1;32m     36[0m [0;34m[0m[0m
+[1;32m     37[0m [0;31m# membaca data dari database ke dalam DataFrame[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 38[0;31m [0;32mwith[0m [0mmysqlEngine[0m[0;34m.[0m[0mconnect[0m[0;34m([0m[0;34m)[0m [0;32mas[0m [0mmysqlConn[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     39[0m     [0mmysqlDf[0m [0;34m=[0m [0mpd[0m[0;34m.[0m[0mread_sql[0m[0;34m([0m[0mmysqlQuery[0m[0;34m,[0m [0mmysqlConn[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     40[0m [0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/engine/base.py[0m in [0;36mconnect[0;34m(self, close_with_result)[0m
+[1;32m   3313[0m         """
+[1;32m   3314[0m [0;34m[0m[0m
+[0;32m-> 3315[0;31m         [0;32mreturn[0m [0mself[0m[0;34m.[0m[0m_connection_cls[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mclose_with_result[0m[0;34m=[0m[0mclose_with_result[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   3316[0m [0;34m[0m[0m
+[1;32m   3317[0m     @util.deprecated(
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/engine/base.py[0m in [0;36m__init__[0;34m(self, engine, connection, close_with_result, _branch_from, _execution_options, _dispatch, _has_events, _allow_revalidate)[0m
+[1;32m     94[0m                 [0mconnection[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     95[0m                 [0;32mif[0m [0mconnection[0m [0;32mis[0m [0;32mnot[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 96[0;31m                 [0;32melse[0m [0mengine[0m[0;34m.[0m[0mraw_connection[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     97[0m             )
+[1;32m     98[0m [0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/engine/base.py[0m in [0;36mraw_connection[0;34m(self, _connection)[0m
+[1;32m   3392[0m [0;34m[0m[0m
+[1;32m   3393[0m         """
+[0;32m-> 3394[0;31m         [0;32mreturn[0m [0mself[0m[0;34m.[0m[0m_wrap_pool_connect[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mpool[0m[0;34m.[0m[0mconnect[0m[0;34m,[0m [0m_connection[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   3395[0m [0;34m[0m[0m
+[1;32m   3396[0m [0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/engine/base.py[0m in [0;36m_wrap_pool_connect[0;34m(self, fn, connection)[0m
+[1;32m   3362[0m         [0;32mexcept[0m [0mdialect[0m[0;34m.[0m[0mdbapi[0m[0;34m.[0m[0mError[0m [0;32mas[0m [0me[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   3363[0m             [0;32mif[0m [0mconnection[0m [0;32mis[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 3364[0;31m                 Connection._handle_dbapi_exception_noconnection(
+[0m[1;32m   3365[0m                     [0me[0m[0;34m,[0m [0mdialect[0m[0;34m,[0m [0mself[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   3366[0m                 )
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/engine/base.py[0m in [0;36m_handle_dbapi_exception_noconnection[0;34m(cls, e, dialect, engine)[0m
+[1;32m   2196[0m             [0mutil[0m[0;34m.[0m[0mraise_[0m[0;34m([0m[0mnewraise[0m[0;34m,[0m [0mwith_traceback[0m[0;34m=[0m[0mexc_info[0m[0;34m[[0m[0;36m2[0m[0;34m][0m[0;34m,[0m [0mfrom_[0m[0;34m=[0m[0me[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2197[0m         [0;32melif[0m [0mshould_wrap[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 2198[0;31m             util.raise_(
+[0m[1;32m   2199[0m                 [0msqlalchemy_exception[0m[0;34m,[0m [0mwith_traceback[0m[0;34m=[0m[0mexc_info[0m[0;34m[[0m[0;36m2[0m[0;34m][0m[0;34m,[0m [0mfrom_[0m[0;34m=[0m[0me[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2200[0m             )
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/util/compat.py[0m in [0;36mraise_[0;34m(***failed resolving arguments***)[0m
+[1;32m    209[0m [0;34m[0m[0m
+[1;32m    210[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 211[0;31m             [0;32mraise[0m [0mexception[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    212[0m         [0;32mfinally[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    213[0m             [0;31m# credit to[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/engine/base.py[0m in [0;36m_wrap_pool_connect[0;34m(self, fn, connection)[0m
+[1;32m   3359[0m         [0mdialect[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mdialect[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   3360[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 3361[0;31m             [0;32mreturn[0m [0mfn[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   3362[0m         [0;32mexcept[0m [0mdialect[0m[0;34m.[0m[0mdbapi[0m[0;34m.[0m[0mError[0m [0;32mas[0m [0me[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   3363[0m             [0;32mif[0m [0mconnection[0m [0;32mis[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/base.py[0m in [0;36mconnect[0;34m(self)[0m
+[1;32m    325[0m [0;34m[0m[0m
+[1;32m    326[0m         """
+[0;32m--> 327[0;31m         [0;32mreturn[0m [0m_ConnectionFairy[0m[0;34m.[0m[0m_checkout[0m[0;34m([0m[0mself[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    328[0m [0;34m[0m[0m
+[1;32m    329[0m     [0;32mdef[0m [0m_return_conn[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mrecord[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/base.py[0m in [0;36m_checkout[0;34m(cls, pool, threadconns, fairy)[0m
+[1;32m    892[0m     [0;32mdef[0m [0m_checkout[0m[0;34m([0m[0mcls[0m[0;34m,[0m [0mpool[0m[0;34m,[0m [0mthreadconns[0m[0;34m=[0m[0;32mNone[0m[0;34m,[0m [0mfairy[0m[0;34m=[0m[0;32mNone[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    893[0m         [0;32mif[0m [0;32mnot[0m [0mfairy[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 894[0;31m             [0mfairy[0m [0;34m=[0m [0m_ConnectionRecord[0m[0;34m.[0m[0mcheckout[0m[0;34m([0m[0mpool[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    895[0m [0;34m[0m[0m
+[1;32m    896[0m             [0mfairy[0m[0;34m.[0m[0m_pool[0m [0;34m=[0m [0mpool[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/base.py[0m in [0;36mcheckout[0;34m(cls, pool)[0m
+[1;32m    491[0m     [0;34m@[0m[0mclassmethod[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    492[0m     [0;32mdef[0m [0mcheckout[0m[0;34m([0m[0mcls[0m[0;34m,[0m [0mpool[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 493[0;31m         [0mrec[0m [0;34m=[0m [0mpool[0m[0;34m.[0m[0m_do_get[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    494[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    495[0m             [0mdbapi_connection[0m [0;34m=[0m [0mrec[0m[0;34m.[0m[0mget_connection[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/impl.py[0m in [0;36m_do_get[0;34m(self)[0m
+[1;32m    144[0m             [0;32mexcept[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    145[0m                 [0;32mwith[0m [0mutil[0m[0;34m.[0m[0msafe_reraise[0m[0;34m([0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 146[0;31m                     [0mself[0m[0;34m.[0m[0m_dec_overflow[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    147[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    148[0m             [0;32mreturn[0m [0mself[0m[0;34m.[0m[0m_do_get[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/util/langhelpers.py[0m in [0;36m__exit__[0;34m(self, type_, value, traceback)[0m
+[1;32m     68[0m             [0mself[0m[0;34m.[0m[0m_exc_info[0m [0;34m=[0m [0;32mNone[0m  [0;31m# remove potential circular references[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     69[0m             [0;32mif[0m [0;32mnot[0m [0mself[0m[0;34m.[0m[0mwarn_only[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 70[0;31m                 compat.raise_(
+[0m[1;32m     71[0m                     [0mexc_value[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     72[0m                     [0mwith_traceback[0m[0;34m=[0m[0mexc_tb[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/util/compat.py[0m in [0;36mraise_[0;34m(***failed resolving arguments***)[0m
+[1;32m    209[0m [0;34m[0m[0m
+[1;32m    210[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 211[0;31m             [0;32mraise[0m [0mexception[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    212[0m         [0;32mfinally[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    213[0m             [0;31m# credit to[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/impl.py[0m in [0;36m_do_get[0;34m(self)[0m
+[1;32m    141[0m         [0;32mif[0m [0mself[0m[0;34m.[0m[0m_inc_overflow[0m[0;34m([0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    142[0m             [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 143[0;31m                 [0;32mreturn[0m [0mself[0m[0;34m.[0m[0m_create_connection[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    144[0m             [0;32mexcept[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    145[0m                 [0;32mwith[0m [0mutil[0m[0;34m.[0m[0msafe_reraise[0m[0;34m([0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/base.py[0m in [0;36m_create_connection[0;34m(self)[0m
+[1;32m    271[0m         [0;34m"""Called by subclasses to create a new ConnectionRecord."""[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    272[0m [0;34m[0m[0m
+[0;32m--> 273[0;31m         [0;32mreturn[0m [0m_ConnectionRecord[0m[0;34m([0m[0mself[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    274[0m [0;34m[0m[0m
+[1;32m    275[0m     [0;32mdef[0m [0m_invalidate[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mconnection[0m[0;34m,[0m [0mexception[0m[0;34m=[0m[0;32mNone[0m[0;34m,[0m [0m_checkin[0m[0;34m=[0m[0;32mTrue[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/base.py[0m in [0;36m__init__[0;34m(self, pool, connect)[0m
+[1;32m    386[0m         [0mself[0m[0;34m.[0m[0m__pool[0m [0;34m=[0m [0mpool[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    387[0m         [0;32mif[0m [0mconnect[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 388[0;31m             [0mself[0m[0;34m.[0m[0m__connect[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    389[0m         [0mself[0m[0;34m.[0m[0mfinalize_callback[0m [0;34m=[0m [0mdeque[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    390[0m [0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/base.py[0m in [0;36m__connect[0;34m(self)[0m
+[1;32m    689[0m         [0;32mexcept[0m [0mBaseException[0m [0;32mas[0m [0me[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    690[0m             [0;32mwith[0m [0mutil[0m[0;34m.[0m[0msafe_reraise[0m[0;34m([0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 691[0;31m                 [0mpool[0m[0;34m.[0m[0mlogger[0m[0;34m.[0m[0mdebug[0m[0;34m([0m[0;34m"Error on connect(): %s"[0m[0;34m,[0m [0me[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    692[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    693[0m             [0;31m# in SQLAlchemy 1.4 the first_connect event is not used by[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/util/langhelpers.py[0m in [0;36m__exit__[0;34m(self, type_, value, traceback)[0m
+[1;32m     68[0m             [0mself[0m[0;34m.[0m[0m_exc_info[0m [0;34m=[0m [0;32mNone[0m  [0;31m# remove potential circular references[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     69[0m             [0;32mif[0m [0;32mnot[0m [0mself[0m[0;34m.[0m[0mwarn_only[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 70[0;31m                 compat.raise_(
+[0m[1;32m     71[0m                     [0mexc_value[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     72[0m                     [0mwith_traceback[0m[0;34m=[0m[0mexc_tb[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/util/compat.py[0m in [0;36mraise_[0;34m(***failed resolving arguments***)[0m
+[1;32m    209[0m [0;34m[0m[0m
+[1;32m    210[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 211[0;31m             [0;32mraise[0m [0mexception[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    212[0m         [0;32mfinally[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    213[0m             [0;31m# credit to[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/pool/base.py[0m in [0;36m__connect[0;34m(self)[0m
+[1;32m    684[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    685[0m             [0mself[0m[0;34m.[0m[0mstarttime[0m [0;34m=[0m [0mtime[0m[0;34m.[0m[0mtime[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 686[0;31m             [0mself[0m[0;34m.[0m[0mdbapi_connection[0m [0;34m=[0m [0mconnection[0m [0;34m=[0m [0mpool[0m[0;34m.[0m[0m_invoke_creator[0m[0;34m([0m[0mself[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    687[0m             [0mpool[0m[0;34m.[0m[0mlogger[0m[0;34m.[0m[0mdebug[0m[0;34m([0m[0;34m"Created new connection %r"[0m[0;34m,[0m [0mconnection[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    688[0m             [0mself[0m[0;34m.[0m[0mfresh[0m [0;34m=[0m [0;32mTrue[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/engine/create.py[0m in [0;36mconnect[0;34m(connection_record)[0m
+[1;32m    576[0m                     [0;32mif[0m [0mconnection[0m [0;32mis[0m [0;32mnot[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    577[0m                         [0;32mreturn[0m [0mconnection[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 578[0;31m             [0;32mreturn[0m [0mdialect[0m[0;34m.[0m[0mconnect[0m[0;34m([0m[0;34m*[0m[0mcargs[0m[0;34m,[0m [0;34m**[0m[0mcparams[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    579[0m [0;34m[0m[0m
+[1;32m    580[0m         [0mcreator[0m [0;34m=[0m [0mpop_kwarg[0m[0;34m([0m[0;34m"creator"[0m[0;34m,[0m [0mconnect[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/engine/default.py[0m in [0;36mconnect[0;34m(self, *cargs, **cparams)[0m
+[1;32m    596[0m     [0;32mdef[0m [0mconnect[0m[0;34m([0m[0mself[0m[0;34m,[0m [0;34m*[0m[0mcargs[0m[0;34m,[0m [0;34m**[0m[0mcparams[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    597[0m         [0;31m# inherits the docstring from interfaces.Dialect.connect[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 598[0;31m         [0;32mreturn[0m [0mself[0m[0;34m.[0m[0mdbapi[0m[0;34m.[0m[0mconnect[0m[0;34m([0m[0;34m*[0m[0mcargs[0m[0;34m,[0m [0;34m**[0m[0mcparams[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    599[0m [0;34m[0m[0m
+[1;32m    600[0m     [0;32mdef[0m [0mcreate_connect_args[0m[0;34m([0m[0mself[0m[0;34m,[0m [0murl[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/mysql/connector/pooling.py[0m in [0;36mconnect[0;34m(*args, **kwargs)[0m
+[1;32m    291[0m [0;34m[0m[0m
+[1;32m    292[0m     [0;32mif[0m [0mCMySQLConnection[0m [0;32mand[0m [0;32mnot[0m [0muse_pure[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 293[0;31m         [0;32mreturn[0m [0mCMySQLConnection[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    294[0m     [0;32mreturn[0m [0mMySQLConnection[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    295[0m [0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/mysql/connector/connection_cext.py[0m in [0;36m__init__[0;34m(self, **kwargs)[0m
+[1;32m    116[0m [0;34m[0m[0m
+[1;32m    117[0m         [0;32mif[0m [0mkwargs[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 118[0;31m             [0mself[0m[0;34m.[0m[0mconnect[0m[0;34m([0m[0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    119[0m [0;34m[0m[0m
+[1;32m    120[0m     [0;32mdef[0m [0m_add_default_conn_attrs[0m[0;34m([0m[0mself[0m[0;34m)[0m [0;34m->[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/mysql/connector/abstracts.py[0m in [0;36mconnect[0;34m(self, **kwargs)[0m
+[1;32m   1176[0m [0;34m[0m[0m
+[1;32m   1177[0m         [0mself[0m[0;34m.[0m[0mdisconnect[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1178[0;31m         [0mself[0m[0;34m.[0m[0m_open_connection[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1179[0m         [0;31m# Server does not allow to run any other statement different from ALTER[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1180[0m         [0;31m# when user's password has been expired.[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.9/dist-packages/mysql/connector/connection_cext.py[0m in [0;36m_open_connection[0;34m(self)[0m
+[1;32m    291[0m                 [0mself[0m[0;34m.[0m[0mconverter[0m[0;34m.[0m[0mstr_fallback[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_converter_str_fallback[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    292[0m         [0;32mexcept[0m [0mMySQLInterfaceError[0m [0;32mas[0m [0merr[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 293[0;31m             raise get_mysql_exception(
+[0m[1;32m    294[0m                 [0mmsg[0m[0;34m=[0m[0merr[0m[0;34m.[0m[0mmsg[0m[0;34m,[0m [0merrno[0m[0;34m=[0m[0merr[0m[0;34m.[0m[0merrno[0m[0;34m,[0m [0msqlstate[0m[0;34m=[0m[0merr[0m[0;34m.[0m[0msqlstate[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    295[0m             ) from err
+
+[0;31mDatabaseError[0m: (mysql.connector.errors.DatabaseError) 2003 (HY000): Can't connect to MySQL server on 'localhost:3306' (99)
+(Background on this error at: https://sqlalche.me/e/14/4xp6)
+DatabaseError: (mysql.connector.errors.DatabaseError) 2003 (HY000): Can't connect to MySQL server on 'localhost:3306' (99)
+(Background on this error at: https://sqlalche.me/e/14/4xp6)
+
