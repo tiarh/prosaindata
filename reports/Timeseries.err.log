@@ -32,8 +32,7 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-["url = 'https://pta.trunojoyo.ac.id/welcome/index/'", '', 'headers = {', "    'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Mobile Safari/537.36'", '}']
-...
-["    title = item.find('a', 'title').text", "    writer = item.find('span', '').text.replace('Penulis :', '')", "    abstrac = item.find('p', {'align': 'justify'}).text", '    temp.append([title, writer, abstrac])', 'print(temp)']
+from google.colab import drive
+drive.mount('/content/drive')
 -------------------
 

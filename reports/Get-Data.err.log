@@ -164,9 +164,9 @@ The above exception was the direct cause of the following exception:
 [0m[1;32m    687[0m             [0mpool[0m[0;34m.[0m[0mlogger[0m[0;34m.[0m[0mdebug[0m[0;34m([0m[0;34m"Created new connection %r"[0m[0;34m,[0m [0mconnection[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 
 [0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/engine/create.py[0m in [0;36mconnect[0;34m(connection_record)[0m
-[1;32m    577[0m                         [0;32mreturn[0m [0mconnection[0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 578[0;31m             [0;32mreturn[0m [0mdialect[0m[0;34m.[0m[0mconnect[0m[0;34m([0m[0;34m*[0m[0mcargs[0m[0;34m,[0m [0;34m**[0m[0mcparams[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    579[0m [0;34m[0m[0m
+[1;32m    573[0m                         [0;32mreturn[0m [0mconnection[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 574[0;31m             [0;32mreturn[0m [0mdialect[0m[0;34m.[0m[0mconnect[0m[0;34m([0m[0;34m*[0m[0mcargs[0m[0;34m,[0m [0;34m**[0m[0mcparams[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    575[0m [0;34m[0m[0m
 
 [0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/engine/default.py[0m in [0;36mconnect[0;34m(self, *cargs, **cparams)[0m
 [1;32m    597[0m         [0;31m# inherits the docstring from interfaces.Dialect.connect[0m[0;34m[0m[0;34m[0m[0m
@@ -346,11 +346,11 @@ The above exception was the direct cause of the following exception:
 [1;32m    688[0m             [0mself[0m[0;34m.[0m[0mfresh[0m [0;34m=[0m [0;32mTrue[0m[0;34m[0m[0;34m[0m[0m
 
 [0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/engine/create.py[0m in [0;36mconnect[0;34m(connection_record)[0m
-[1;32m    576[0m                     [0;32mif[0m [0mconnection[0m [0;32mis[0m [0;32mnot[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    577[0m                         [0;32mreturn[0m [0mconnection[0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 578[0;31m             [0;32mreturn[0m [0mdialect[0m[0;34m.[0m[0mconnect[0m[0;34m([0m[0;34m*[0m[0mcargs[0m[0;34m,[0m [0;34m**[0m[0mcparams[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    579[0m [0;34m[0m[0m
-[1;32m    580[0m         [0mcreator[0m [0;34m=[0m [0mpop_kwarg[0m[0;34m([0m[0;34m"creator"[0m[0;34m,[0m [0mconnect[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    572[0m                     [0;32mif[0m [0mconnection[0m [0;32mis[0m [0;32mnot[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    573[0m                         [0;32mreturn[0m [0mconnection[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 574[0;31m             [0;32mreturn[0m [0mdialect[0m[0;34m.[0m[0mconnect[0m[0;34m([0m[0;34m*[0m[0mcargs[0m[0;34m,[0m [0;34m**[0m[0mcparams[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    575[0m [0;34m[0m[0m
+[1;32m    576[0m         [0mcreator[0m [0;34m=[0m [0mpop_kwarg[0m[0;34m([0m[0;34m"creator"[0m[0;34m,[0m [0mconnect[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 
 [0;32m/usr/local/lib/python3.9/dist-packages/sqlalchemy/engine/default.py[0m in [0;36mconnect[0;34m(self, *cargs, **cparams)[0m
 [1;32m    596[0m     [0;32mdef[0m [0mconnect[0m[0;34m([0m[0mself[0m[0;34m,[0m [0;34m*[0m[0mcargs[0m[0;34m,[0m [0;34m**[0m[0mcparams[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m

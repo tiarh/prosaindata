@@ -387,7 +387,7 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pandas
 <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>psycopg2-binary
-<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>jdbc
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>orchest
 <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>mysql-connector-python
 <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>SQLAlchemy
 </pre></div>
@@ -396,10 +396,10 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
 Requirement already satisfied: pandas in /usr/local/lib/python3.9/dist-packages (1.4.4)
+Requirement already satisfied: numpy&gt;=1.18.5 in /usr/local/lib/python3.9/dist-packages (from pandas) (1.22.4)
 Requirement already satisfied: python-dateutil&gt;=2.8.1 in /usr/local/lib/python3.9/dist-packages (from pandas) (2.8.2)
 Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.9/dist-packages (from pandas) (2022.7.1)
-Requirement already satisfied: numpy&gt;=1.18.5 in /usr/local/lib/python3.9/dist-packages (from pandas) (1.22.4)
-Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.9/dist-packages (from python-dateutil&gt;=2.8.1-&gt;pandas) (1.15.0)
+Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.9/dist-packages (from python-dateutil&gt;=2.8.1-&gt;pandas) (1.16.0)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
@@ -407,11 +407,14 @@ Requirement already satisfied: psycopg2-binary in /usr/local/lib/python3.9/dist-
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">ERROR: Could not find a version that satisfies the requirement jdbc (from versions: none)</span>
-<span class=" -Color -Color-Red">ERROR: No matching distribution found for jdbc</span>
-
+Requirement already satisfied: orchest in /usr/local/lib/python3.9/dist-packages (0.3.11)
+Requirement already satisfied: requests&gt;=1.0.0 in /usr/local/lib/python3.9/dist-packages (from orchest) (2.27.1)
+Requirement already satisfied: pyarrow&lt;8.0,&gt;=1.0.0 in /usr/local/lib/python3.9/dist-packages (from orchest) (7.0.0)
+Requirement already satisfied: numpy&gt;=1.16.6 in /usr/local/lib/python3.9/dist-packages (from pyarrow&lt;8.0,&gt;=1.0.0-&gt;orchest) (1.22.4)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.9/dist-packages (from requests&gt;=1.0.0-&gt;orchest) (2022.12.7)
+Requirement already satisfied: charset-normalizer~=2.0.0 in /usr/local/lib/python3.9/dist-packages (from requests&gt;=1.0.0-&gt;orchest) (2.0.12)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.9/dist-packages (from requests&gt;=1.0.0-&gt;orchest) (3.4)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/local/lib/python3.9/dist-packages (from requests&gt;=1.0.0-&gt;orchest) (1.26.15)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
@@ -420,7 +423,7 @@ Requirement already satisfied: protobuf&lt;=3.20.3,&gt;=3.11.0 in /usr/local/lib
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
-Requirement already satisfied: SQLAlchemy in /usr/local/lib/python3.9/dist-packages (1.4.46)
+Requirement already satisfied: SQLAlchemy in /usr/local/lib/python3.9/dist-packages (1.4.47)
 Requirement already satisfied: greenlet!=0.4.17 in /usr/local/lib/python3.9/dist-packages (from SQLAlchemy) (2.0.2)
 </pre></div>
 </div>
@@ -511,16 +514,16 @@ Requirement already satisfied: greenlet!=0.4.17 in /usr/local/lib/python3.9/dist
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.9/dist-packages/pandas/io/sql.py:762: UserWarning: pandas only support SQLAlchemy connectable(engine/connection) ordatabase string URI or sqlite3 DBAPI2 connectionother DBAPI2 objects are not tested, please consider using SQLAlchemy
+  warnings.warn(
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  petallength
 0         1.4
 1         1.4
 2         1.3
 3         1.5
 4         1.4
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.9/dist-packages/pandas/io/sql.py:762: UserWarning: pandas only support SQLAlchemy connectable(engine/connection) ordatabase string URI or sqlite3 DBAPI2 connectionother DBAPI2 objects are not tested, please consider using SQLAlchemy
-  warnings.warn(
 </pre></div>
 </div>
 </div>
@@ -604,7 +607,7 @@ Requirement already satisfied: greenlet!=0.4.17 in /usr/local/lib/python3.9/dist
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-703191c9-b38c-4a64-8f31-4e08a7cbccde">
+  <div id="df-63a548f5-4336-4a6b-8b26-6ade1ffbc982">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -675,7 +678,7 @@ Requirement already satisfied: greenlet!=0.4.17 in /usr/local/lib/python3.9/dist
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-703191c9-b38c-4a64-8f31-4e08a7cbccde')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-63a548f5-4336-4a6b-8b26-6ade1ffbc982')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
         
@@ -726,12 +729,12 @@ Requirement already satisfied: greenlet!=0.4.17 in /usr/local/lib/python3.9/dist
 
       <script>
         const buttonEl =
-          document.querySelector('#df-703191c9-b38c-4a64-8f31-4e08a7cbccde button.colab-df-convert');
+          document.querySelector('#df-63a548f5-4336-4a6b-8b26-6ade1ffbc982 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-703191c9-b38c-4a64-8f31-4e08a7cbccde');
+          const element = document.querySelector('#df-63a548f5-4336-4a6b-8b26-6ade1ffbc982');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -781,24 +784,44 @@ Requirement already satisfied: greenlet!=0.4.17 in /usr/local/lib/python3.9/dist
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  petallength sepallength sepalwidth  petalwidth
+0         1.4         5.1        3.5         0.2
+1         1.4         4.9          3         0.2
+2         1.3         4.7        3.2         0.2
+3         1.5         4.6        3.1         0.2
+4         1.4           5        3.6         0.2
+(150, 4)
+0    Iris-setosa
+1    Iris-setosa
+2    Iris-setosa
+3    Iris-setosa
+4    Iris-setosa
+Name: class, dtype: object
+(150,)
+</pre></div>
+</div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">7</span><span class="o">-</span><span class="mi">722</span><span class="n">b1d16546d</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">orchest</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> 
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Gabungkan data dari beberapa sumber ke dalam satu DataFrame</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">new_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">mysqldf</span><span class="p">,</span> <span class="n">pgDf</span><span class="p">,</span> <span class="n">ElephantServerDf</span><span class="p">,</span> <span class="n">iris_selected_df</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">13</span><span class="o">-</span><span class="mi">722</span><span class="n">b1d16546d</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span> 
+<span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="c1"># Output data df_data dan df_target untuk digunakan pada task berikutnya</span>
+<span class="ne">---&gt; </span><span class="mi">23</span> <span class="n">orchest</span><span class="o">.</span><span class="n">output</span><span class="p">((</span><span class="n">df_data</span><span class="p">,</span> <span class="n">df_target</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
 
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;orchest&#39;
+<span class="nn">/usr/local/lib/python3.9/dist-packages/orchest/transfer.py</span> in <span class="ni">output</span><span class="nt">(data, name)</span>
+<span class="g g-Whitespace">    </span><span class="mi">825</span>         <span class="k">raise</span> <span class="n">error</span><span class="o">.</span><span class="n">DataInvalidNameError</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">826</span> 
+<span class="ne">--&gt; </span><span class="mi">827</span>     <span class="k">return</span> <span class="n">output_to_disk</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">828</span>         <span class="n">data</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">829</span>         <span class="n">name</span><span class="p">,</span>
 
-<span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NOTE</span>: If your import is failing due to a missing package, you can
-<span class="n">manually</span> <span class="n">install</span> <span class="n">dependencies</span> <span class="n">using</span> <span class="n">either</span> <span class="o">!</span>pip<span class="w"> </span>or<span class="w"> </span>!apt.
+<span class="nn">/usr/local/lib/python3.9/dist-packages/orchest/transfer.py</span> in <span class="ni">output_to_disk</span><span class="nt">(data, name, serialization)</span>
+<span class="g g-Whitespace">    </span><span class="mi">330</span> 
+<span class="g g-Whitespace">    </span><span class="mi">331</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">332</span>         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">Config</span><span class="o">.</span><span class="n">PIPELINE_DEFINITION_PATH</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">333</span>             <span class="n">pipeline_definition</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">334</span>     <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
 
-<span class="n">To</span> <span class="n">view</span> <span class="n">examples</span> <span class="n">of</span> <span class="n">installing</span> <span class="n">some</span> <span class="n">common</span> <span class="n">dependencies</span><span class="p">,</span> <span class="n">click</span> <span class="n">the</span>
-<span class="s2">&quot;Open Examples&quot;</span> <span class="n">button</span> <span class="n">below</span><span class="o">.</span>
-<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span>: expected str, bytes or os.PathLike object, not NoneType
 </pre></div>
 </div>
 </div>
@@ -862,26 +885,27 @@ Requirement already satisfied: greenlet!=0.4.17 in /usr/local/lib/python3.9/dist
 <span class="n">data</span> <span class="o">=</span> <span class="n">orchest</span><span class="o">.</span><span class="n">get_inputs</span><span class="p">()</span>
 
 <span class="c1"># split the input data into X and y</span>
-<span class="n">data</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">values</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">values</span>
+<span class="n">training_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;training_data&quot;</span><span class="p">]</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">training_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">training_data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
 <span class="c1"># define the preprocessing steps</span>
 <span class="n">preprocessing_steps</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">StandardScaler</span><span class="p">(),</span>
 <span class="p">]</span>
 
-<span class="c1"># fit and transform the preprocessing steps to X</span>
+<span class="c1"># fit and transform the preprocessing steps to X_train</span>
 <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">preprocessing_steps</span><span class="p">:</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="n">step</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">X_train</span> <span class="o">=</span> <span class="n">step</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
 
 <span class="c1"># define the PCA model with n_components = 2</span>
 <span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="c1"># fit and transform PCA to X</span>
-<span class="n">X_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="c1"># fit and transform PCA to X_train</span>
+<span class="n">X_train_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
 
 <span class="c1"># output the transformed data</span>
-<span class="n">orchest</span><span class="o">.</span><span class="n">output</span><span class="p">((</span><span class="n">X_pca</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;pca_data&quot;</span><span class="p">)</span>
+<span class="n">orchest</span><span class="o">.</span><span class="n">output</span><span class="p">((</span><span class="n">X_train_pca</span><span class="p">,</span> <span class="n">y_train</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;pca_data&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -910,7 +934,7 @@ Requirement already satisfied: greenlet!=0.4.17 in /usr/local/lib/python3.9/dist
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">orchest</span><span class="o">.</span><span class="n">get_inputs</span><span class="p">()</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;training_data&quot;</span><span class="p">]</span>
+<span class="n">X_train_pca</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;pca_data&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -920,15 +944,21 @@ Requirement already satisfied: greenlet!=0.4.17 in /usr/local/lib/python3.9/dist
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fitting the model...&quot;</span><span class="p">)</span>
 <span class="c1"># Fit model.</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">()</span>
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_pca</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_test_prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="n">test_accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_prediction</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_train_prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train_pca</span><span class="p">)</span>
+
+<span class="c1"># compute and output the accuracy score for the fitted model on the training data</span>
+<span class="n">train_accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_prediction</span><span class="p">)</span>
+<span class="n">orchest</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">train_accuracy</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;knn-classifier-train-accuracy&quot;</span><span class="p">)</span>
+
+<span class="c1"># make predictions on the test data (which is the same as the training data in this case)</span>
+<span class="n">y_test_prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train_pca</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -936,7 +966,8 @@ Requirement already satisfied: greenlet!=0.4.17 in /usr/local/lib/python3.9/dist
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Output the accuracy for later use in the pipeline.</span>
-<span class="n">orchest</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">test_accuracy</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;knn-classifier-accuracy&quot;</span><span class="p">)</span>
+<span class="n">test_accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_test_prediction</span><span class="p">)</span>
+<span class="n">orchest</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">test_accuracy</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;knn-classifier-test-accuracy&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -965,26 +996,31 @@ Requirement already satisfied: greenlet!=0.4.17 in /usr/local/lib/python3.9/dist
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">orchest</span><span class="o">.</span><span class="n">get_inputs</span><span class="p">()</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;training_data&quot;</span><span class="p">]</span>
+<span class="n">X_train_pca</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;pca_data&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_pca</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make predictions on the test set</span>
-<span class="n">y_test_prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Predict training set labels using the fitted model</span>
+<span class="n">y_train_prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train_pca</span><span class="p">)</span>
 
-<span class="c1"># Calculate the accuracy score</span>
-<span class="n">test_accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_prediction</span><span class="p">)</span>
+<span class="c1"># Compute and output the accuracy score for the fitted model</span>
+<span class="n">train_accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_prediction</span><span class="p">)</span>
+<span class="n">orchest</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">train_accuracy</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;naive-bayes-train-accuracy&quot;</span><span class="p">)</span>
+
+<span class="c1"># Predict test set labels using the fitted model</span>
+<span class="n">y_test_prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train_pca</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -992,7 +1028,8 @@ Requirement already satisfied: greenlet!=0.4.17 in /usr/local/lib/python3.9/dist
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save results</span>
-<span class="n">orchest</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">test_accuracy</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;naive-bayes-accuracy&quot;</span><span class="p">)</span>
+<span class="n">test_accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_test_prediction</span><span class="p">)</span>
+<span class="n">orchest</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">test_accuracy</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;naive-bayes-test-accuracy&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
