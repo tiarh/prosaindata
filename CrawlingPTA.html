@@ -18,12 +18,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -37,8 +37,8 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -366,48 +366,145 @@ document.write(`
 <h1>Crawling PTA<a class="headerlink" href="#crawling-pta" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span> <span class="k">as</span> <span class="nn">requ</span>
-<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span> <span class="k">as</span> <span class="n">bso</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">import</span> <span class="nn">csv</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="n">hades</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;user-agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36&#39;</span><span class="p">}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>requests
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>html5lib
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>bs4
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
+Requirement already satisfied: requests in /usr/local/lib/python3.9/dist-packages (2.27.1)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.9/dist-packages (from requests) (3.4)
+Requirement already satisfied: charset-normalizer~=2.0.0 in /usr/local/lib/python3.9/dist-packages (from requests) (2.0.12)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.9/dist-packages (from requests) (2022.12.7)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/local/lib/python3.9/dist-packages (from requests) (1.26.15)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
+Requirement already satisfied: html5lib in /usr/local/lib/python3.9/dist-packages (1.1)
+Requirement already satisfied: webencodings in /usr/local/lib/python3.9/dist-packages (from html5lib) (0.5.1)
+Requirement already satisfied: six&gt;=1.9 in /usr/local/lib/python3.9/dist-packages (from html5lib) (1.16.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
+Collecting bs4
+  Downloading bs4-0.0.1.tar.gz (1.1 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Preparing metadata (setup.py) ... ?25l?25hdone
+Requirement already satisfied: beautifulsoup4 in /usr/local/lib/python3.9/dist-packages (from bs4) (4.11.2)
+Requirement already satisfied: soupsieve&gt;1.2 in /usr/local/lib/python3.9/dist-packages (from beautifulsoup4-&gt;bs4) (2.4)
+Building wheels for collected packages: bs4
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Building wheel for bs4 (setup.py) ... ?25l?25hdone
+  Created wheel for bs4: filename=bs4-0.0.1-py3-none-any.whl size=1270 sha256=3b695bafa16ca6d3a344af71136971c9df247c4d8a9b60178e124ce29222f9ba
+  Stored in directory: /root/.cache/pip/wheels/73/2b/cb/099980278a0c9a3e57ff1a89875ec07bfa0b6fcbebb9a8cad3
+Successfully built bs4
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: bs4
+Successfully installed bs4-0.0.1
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://pta.trunojoyo.ac.id/welcome/index/&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># constant</span>
+<span class="n">LAST_INDEX</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">FIRST_INDEX</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">INCREMENT_BY_ONE</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import library</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;user-agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Mobile Safari/537.36&#39;</span>
-<span class="p">}</span>
+<span class="k">def</span> <span class="nf">request_url</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 
-<span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">):</span>
-  <span class="n">req</span> <span class="o">=</span> <span class="n">requ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">page</span><span class="p">),</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
-  <span class="n">bs</span> <span class="o">=</span> <span class="n">bso</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
-  <span class="n">items</span> <span class="o">=</span> <span class="n">bs</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;data-id&#39;</span><span class="p">:</span><span class="s1">&#39;id-1&#39;</span><span class="p">})</span>
-  <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
-    <span class="c1"># temp = []</span>
-    <span class="n">title</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
-    <span class="n">writer</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Penulis :&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-    <span class="n">abstrac</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;align&#39;</span><span class="p">:</span> <span class="s1">&#39;justify&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">text</span>
-    <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">title</span><span class="p">,</span> <span class="n">writer</span><span class="p">,</span> <span class="n">abstrac</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">request_header_url</span><span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">url_website</span><span class="p">):</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="n">header</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url_website</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">parse_website</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Use html5lib library to parse&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;html5lib&#39;</span><span class="p">)</span> <span class="c1"># If this line causes an error, run &#39;pip install html5lib&#39; or install html5lib    </span>
+
+<span class="k">def</span> <span class="nf">prettify_web_structure</span><span class="p">(</span><span class="n">parsed_page</span><span class="p">):</span>
+    <span class="n">parsed_page</span><span class="o">.</span><span class="n">prettify</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">get_content_table</span><span class="p">(</span><span class="n">web_element</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">attributes</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">web_element</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="n">attributes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># max_pages = 172 # total halaman di website PTA, terbaru februari 2023</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">request_header_url</span><span class="p">(</span><span class="s2">&quot;Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:15.0) Gecko/20100101 Firefox/15.0.1&quot;</span><span class="p">,</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/10&quot;</span><span class="p">)</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">parse_website</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="n">prettify_web_structure</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">get_content_table</span><span class="p">(</span><span class="n">soup</span><span class="p">,</span> <span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="s2">&quot;wrapper&quot;</span><span class="p">})</span>
+
+<span class="n">pagination</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span><span class="s2">&quot;pag_button&quot;</span><span class="p">})</span>
+<span class="n">total_pages</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">pagination</span><span class="p">[</span><span class="n">LAST_INDEX</span><span class="p">][</span><span class="s2">&quot;href&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="n">LAST_INDEX</span><span class="p">])</span>
+
+<span class="n">papers</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">pages</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">FIRST_INDEX</span><span class="p">,</span> <span class="n">total_pages</span> <span class="o">+</span> <span class="n">INCREMENT_BY_ONE</span><span class="p">):</span>
+
+    <span class="n">url_link</span> <span class="o">=</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/10&quot;</span>
+    <span class="n">id_prodi</span> <span class="o">=</span> <span class="n">url_link</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="n">LAST_INDEX</span><span class="p">]</span>
+    <span class="n">nama_prodi</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">id_prodi</span> <span class="o">==</span> <span class="s2">&quot;10&quot;</span><span class="p">):</span>
+        <span class="n">nama_prodi</span> <span class="o">=</span> <span class="s2">&quot;Teknik Informatika&quot;</span>
+
+    <span class="n">r_pages</span> <span class="o">=</span> <span class="n">request_header_url</span><span class="p">(</span><span class="s2">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">url_link</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">pages</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">soup_pages</span> <span class="o">=</span> <span class="n">parse_website</span><span class="p">(</span><span class="n">r_pages</span><span class="p">)</span>
+    <span class="n">prettify_web_structure</span><span class="p">(</span><span class="n">soup_pages</span><span class="p">)</span>
+    <span class="n">table_pages</span> <span class="o">=</span> <span class="n">get_content_table</span><span class="p">(</span><span class="n">soup_pages</span><span class="p">,</span> <span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="s2">&quot;wrapper&quot;</span><span class="p">})</span>
+
+    <span class="k">for</span> <span class="n">article_row</span> <span class="ow">in</span> <span class="n">table_pages</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span><span class="s2">&quot;gray button&quot;</span><span class="p">}):</span>
+        <span class="n">r_article_row</span> <span class="o">=</span> <span class="n">request_header_url</span><span class="p">(</span><span class="s2">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36&quot;</span><span class="p">,</span> <span class="n">article_row</span><span class="p">[</span><span class="s2">&quot;href&quot;</span><span class="p">])</span>
+        <span class="n">soup_article_row</span> <span class="o">=</span> <span class="n">parse_website</span><span class="p">(</span><span class="n">r_article_row</span><span class="p">)</span>
+        <span class="n">prettify_web_structure</span><span class="p">(</span><span class="n">soup_article_row</span><span class="p">)</span>
+        <span class="n">table_article_row</span> <span class="o">=</span> <span class="n">get_content_table</span><span class="p">(</span><span class="n">soup_article_row</span><span class="p">,</span> <span class="s2">&quot;li&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;data-id&quot;</span><span class="p">:</span><span class="s2">&quot;id-1&quot;</span><span class="p">,</span> <span class="s2">&quot;data-cat&quot;</span><span class="p">:</span><span class="s2">&quot;#luxury&quot;</span><span class="p">})</span>
+        <span class="n">article_row_title</span> <span class="o">=</span> <span class="n">table_article_row</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="s2">&quot;href&quot;</span><span class="p">:</span><span class="s2">&quot;#&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">string</span>
+        <span class="n">article_row_abstract</span> <span class="o">=</span> <span class="n">table_article_row</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;align&quot;</span><span class="p">:</span><span class="s2">&quot;justify&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">string</span>
+        <span class="n">nim</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">article_row</span><span class="p">[</span><span class="s2">&quot;href&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="n">LAST_INDEX</span><span class="p">]</span>
+        <span class="n">papers</span><span class="o">.</span><span class="n">append</span><span class="p">([</span>
+            <span class="n">nim</span><span class="p">,</span>
+            <span class="n">article_row_title</span><span class="p">,</span> 
+            <span class="n">article_row_abstract</span><span class="p">,</span>
+            <span class="n">nama_prodi</span>
+        <span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">KeyboardInterrupt</span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="n">ebcb368fa9c2</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">):</span>
-<span class="ne">----&gt; </span><span class="mi">9</span>   <span class="n">req</span> <span class="o">=</span> <span class="n">requ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">page</span><span class="p">),</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span>   <span class="n">bs</span> <span class="o">=</span> <span class="n">bso</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span>   <span class="n">items</span> <span class="o">=</span> <span class="n">bs</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;data-id&#39;</span><span class="p">:</span><span class="s1">&#39;id-1&#39;</span><span class="p">})</span>
+<span class="nn">&lt;ipython-input-4-9ec16b0a4ea1&gt;</span> in <span class="ni">&lt;cell line: 12&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span>         <span class="n">nama_prodi</span> <span class="o">=</span> <span class="s2">&quot;Teknik Informatika&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> 
+<span class="ne">---&gt; </span><span class="mi">20</span>     <span class="n">r_pages</span> <span class="o">=</span> <span class="n">request_header_url</span><span class="p">(</span><span class="s2">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">url_link</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">pages</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span>     <span class="n">soup_pages</span> <span class="o">=</span> <span class="n">parse_website</span><span class="p">(</span><span class="n">r_pages</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span>     <span class="n">prettify_web_structure</span><span class="p">(</span><span class="n">soup_pages</span><span class="p">)</span>
+
+<span class="nn">&lt;ipython-input-3-0e8375a9a348&gt;</span> in <span class="ni">request_header_url</span><span class="nt">(header, url_website)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="k">def</span> <span class="nf">request_header_url</span><span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">url_website</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="n">header</span><span class="p">}</span>
+<span class="ne">---&gt; </span><span class="mi">10</span>     <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url_website</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> 
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="k">def</span> <span class="nf">parse_website</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
 
 <span class="nn">/usr/local/lib/python3.9/dist-packages/requests/api.py</span> in <span class="ni">get</span><span class="nt">(url, params, **kwargs)</span>
 <span class="g g-Whitespace">     </span><span class="mi">73</span>     <span class="s2">&quot;&quot;&quot;</span>
@@ -516,14 +613,14 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Judul&#39;</span><span class="p">,</span> <span class="s1">&#39;Penulis&#39;</span><span class="p">,</span> <span class="s1">&#39;Abstrak&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">papers</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;NIM&quot;</span><span class="p">,</span> <span class="s2">&quot;Judul&quot;</span><span class="p">,</span> <span class="s2">&quot;Abstrak&quot;</span><span class="p">,</span> <span class="s2">&quot;Program Studi&quot;</span><span class="p">])</span>
 <span class="n">df</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-2be93ac8-7488-4813-b131-77c451815e19">
+  <div id="df-c939007c-54df-4393-ad2d-01d0daeb83ad">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -543,83 +640,95 @@ document.write(`
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>NIM</th>
       <th>Judul</th>
-      <th>Penulis</th>
       <th>Abstrak</th>
+      <th>Program Studi</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>STRATEGI PENGEMBANGAN MAKANAN DAN MINUMAN KHAS...</td>
-      <td>Mohammad Maskur</td>
-      <td>Makanan dan minuman khas merupakan ciri dari k...</td>
+      <td>040411100468</td>
+      <td>PERANCANGAN DAN IMPLEMENTASI SISTEM DATABASE \...</td>
+      <td>Sistem  informasi  akademik  (SIAKAD) merupaka...</td>
+      <td>Teknik Informatika</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>PERUMUSAN SANKSI PIDANA BAGI MASYARAKAT SEKITA...</td>
-      <td>Moch. Steven</td>
-      <td>ABSTRAK\nAkhir-akhir ini semakin maraknya penc...</td>
+      <td>040411100476</td>
+      <td>APLIKASI KONTROL DAN MONITORING JARINGAN KOMPU...</td>
+      <td>Berjalannya koneksi jaringan komputer dengan l...</td>
+      <td>Teknik Informatika</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Peran Teor Motivasi Herzberg Sebagai Mediator ...</td>
-      <td>Widha Deby Andrea</td>
-      <td>Penelitian ini bertujuan untuk dapat mengetahu...</td>
+      <td>040411100480</td>
+      <td>RANCANG BANGUN APLIKASI PROXY SERVER UNTUK\nEN...</td>
+      <td>Web server adalah sebuah perangkat lunak serve...</td>
+      <td>Teknik Informatika</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>ANALISIS KANDUNGAN TIMBAL (Pb) UDANG REBON (Ac...</td>
-      <td>Roihatul Jannah dan Haryo Triajie</td>
-      <td>Perairan Soccah merupakan lokasi nelayan menca...</td>
+      <td>070411100070</td>
+      <td>SISTEM PENDUKUNG KEPUTUSAN OPTIMASI PENJADWALA...</td>
+      <td>Penjadwalan  kuliah  di  Perguruan  Tinggi  me...</td>
+      <td>Teknik Informatika</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Analisis Wacana Media Online Detik.com dalam M...</td>
-      <td>RIAN PANDI PRANATA</td>
-      <td>Abstrak\n\n Rian Pandi Pranata. NIM 1605211000...</td>
+      <td>080411100115</td>
+      <td>SISTEM AUGMENTED REALITY ANIMASI BENDA BERGERA...</td>
+      <td>Seiring perkembangan teknologi yang ada diduni...</td>
+      <td>Teknik Informatika</td>
     </tr>
     <tr>
       <th>...</th>
       <td>...</td>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
-      <th>142</th>
-      <td>An Analysis of Figurative Language in Selected...</td>
-      <td>R. Ayu Suci. I.A</td>
-      <td>ANALISIS BAHASA FIGURATIF YANG DIGUNAKAN...</td>
+      <th>853</th>
+      <td>160411100032</td>
+      <td>PENERAPAN ALGORITMA LONG-SHORT TERM MEMORY UNT...</td>
+      <td>Investasi saham selama ini memiliki resiko ker...</td>
+      <td>Teknik Informatika</td>
     </tr>
     <tr>
-      <th>143</th>
-      <td>HAMBATAN KOMUNIKASI MAHASISWA PAPUA (Studi Des...</td>
-      <td>Kharisma Syarochman Usman</td>
-      <td>Abstrak\n\nTujuan dari penelitian ini adalah u...</td>
+      <th>854</th>
+      <td>160411100182</td>
+      <td>SISTEM PENCARIAN TEKS AL-QURAN TERJEMAHAN BERB...</td>
+      <td>Information Retrieval (IR) merupakan pengambil...</td>
+      <td>Teknik Informatika</td>
     </tr>
     <tr>
-      <th>144</th>
-      <td>PENGARUH MEDIA VIRTUAL REALITY BERBANTUAN GOOG...</td>
-      <td>Fina Nabilah Layaliya</td>
-      <td>Penelitian ini dilatarbelakangi oleh kesulitan...</td>
+      <th>855</th>
+      <td>160411100077</td>
+      <td>KLASIFIKASI KOMPLEKSITAS VISUAL CITRA SAMPAH M...</td>
+      <td>Klasifikasi citra merupakan proses pengelompok...</td>
+      <td>Teknik Informatika</td>
     </tr>
     <tr>
-      <th>145</th>
-      <td>ANALISIS PENGGUNAAN KALIMAT ANALITIS,KONTRADIK...</td>
-      <td>ISTIBSYAROH</td>
-      <td>ABSTRAK\nAbstrak: Penelitian ini mengkaji bent...</td>
+      <th>856</th>
+      <td>160411100084</td>
+      <td>IDENTIFIKASI BINER ATRIBUT PEJALAN KAKI MENGGU...</td>
+      <td>Identifikasi atribut pejalan kaki merupakan sa...</td>
+      <td>Teknik Informatika</td>
     </tr>
     <tr>
-      <th>146</th>
-      <td>PENGARUH PENAMBAHAN NaOH TERHADAP PENINGKATAN ...</td>
-      <td>Mohammad Rahem</td>
-      <td>ABSTRAK\nProduksi garam krosok di Salt House m...</td>
+      <th>857</th>
+      <td>160411100044</td>
+      <td>DETEKSI OBJEK MANUSIA BERBASIS ONE STAGE DETEC...</td>
+      <td>Topik deteksi objek telah menarik perhatian ya...</td>
+      <td>Teknik Informatika</td>
     </tr>
   </tbody>
 </table>
-<p>147 rows × 3 columns</p>
+<p>858 rows × 4 columns</p>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-2be93ac8-7488-4813-b131-77c451815e19')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-c939007c-54df-4393-ad2d-01d0daeb83ad')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
         
@@ -670,12 +779,12 @@ document.write(`
 
       <script>
         const buttonEl =
-          document.querySelector('#df-2be93ac8-7488-4813-b131-77c451815e19 button.colab-df-convert');
+          document.querySelector('#df-c939007c-54df-4393-ad2d-01d0daeb83ad button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-2be93ac8-7488-4813-b131-77c451815e19');
+          const element = document.querySelector('#df-c939007c-54df-4393-ad2d-01d0daeb83ad');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -700,14 +809,20 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
 <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
-<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/My Drive/prosaindata/pta.csv&#39;</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;utf-8-sig&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-  <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mounted at /content/drive
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>  
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/prosaindata/tugas/PTA.csv&#39;</span><span class="p">)</span>  
+<span class="c1"># pd.read_csv(&#39;/content/drive/MyDrive/prosaindata/tugas/PTA.csv&#39;)</span>
 </pre></div>
 </div>
 </div>
@@ -740,7 +855,10 @@ document.write(`
               
               
                 <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="CrawlingBerita.html"
@@ -760,7 +878,10 @@ document.write(`
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -770,7 +891,7 @@ document.write(`
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
+            
 <div class="bd-footer-content__inner container">
   
   <div class="footer-item">
@@ -800,7 +921,7 @@ By The Jupyter Book Community
     
   </div>
   
-</div></div>
+</div>
           </footer>
         
 
@@ -809,8 +930,8 @@ By The Jupyter Book Community
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>
