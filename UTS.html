@@ -413,13 +413,13 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/prosaindata/tugas/PTA.xlsx&#39;</span><span class="p">)</span>
-<span class="n">df</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-6220c2fc-428d-4a0e-8029-e27bd2a7e816">
+  <div id="df-07998ab0-f267-4f2d-b8a0-9c49a13ed035">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -539,7 +539,7 @@ document.write(`
 </table>
 <p>811 rows × 5 columns</p>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-6220c2fc-428d-4a0e-8029-e27bd2a7e816')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-07998ab0-f267-4f2d-b8a0-9c49a13ed035')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
         
@@ -590,12 +590,12 @@ document.write(`
 
       <script>
         const buttonEl =
-          document.querySelector('#df-6220c2fc-428d-4a0e-8029-e27bd2a7e816 button.colab-df-convert');
+          document.querySelector('#df-07998ab0-f267-4f2d-b8a0-9c49a13ed035 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-6220c2fc-428d-4a0e-8029-e27bd2a7e816');
+          const element = document.querySelector('#df-07998ab0-f267-4f2d-b8a0-9c49a13ed035');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -630,13 +630,19 @@ document.write(`
 <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
 <span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
 
-<span class="c1"># Tokenize sentences in &#39;Abstrak&#39; column</span>
+<span class="c1"># mengubah kolom &quot;Abstrak&quot; dari dataframe df menjadi list yang berisi token yang telah dipisahkan. </span>
+<span class="c1"># Pengubahan dilakukan dengan mengaplikasikan fungsi split() pada setiap teks pada kolom &quot;Abstrak&quot;. </span>
+<span class="c1"># lambda x digunakan untuk mengakses setiap teks pada kolom &quot;Abstrak&quot; secara individual.</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Abstrak&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Abstrak&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
 
-<span class="c1"># Split data into train and test sets</span>
+<span class="c1"># membagi dataset ke dalam train set dan test set. Data yang akan digunakan untuk training disimpan dalam variabel X_train dan y_train</span>
+<span class="c1"># sementara data yang akan digunakan untuk pengujian atau testing disimpan dalam variabel X_test dan y_test. </span>
+<span class="c1"># Parameter test_size menunjukkan ukuran dari test set yang akan dihasilkan.</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Abstrak&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Label&#39;</span><span class="p">],</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 
-<span class="c1"># Train Word2Vec model</span>
+<span class="c1"># inisialisasi model Word2Vec. X_train adalah list token yang dihasilkan dari bagian sebelumnya</span>
+<span class="c1"># vector_size menunjukkan dimensi yang ingin dihasilkan pada model</span>
+<span class="c1"># min_count adalah jumlah minimum kata yang ingin ditampung dalam model.</span>
 <span class="n">w2v_model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">vector_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">min_count</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># Define Word2Vec transformer</span>
@@ -665,6 +671,8 @@ document.write(`
 <span class="n">X_train_pca</span><span class="p">,</span> <span class="n">X_test_pca</span><span class="p">,</span> <span class="n">y_train_pca</span><span class="p">,</span> <span class="n">y_test_pca</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_pca</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 
 <span class="c1"># Train KNN model</span>
+<span class="c1"># model KNN dibuat dengan n_neighbors=5, artinya model akan mencari 5 tetangga terdekat dari setiap data baru. </span>
+<span class="c1"># model dilatih menggunakan data latih hasil transformer dengan knn.fit(X_train_pca, y_train_pca).</span>
 <span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_pca</span><span class="p">,</span> <span class="n">y_train_pca</span><span class="p">)</span>
 
@@ -684,8 +692,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy KNN: 0.7769230769230769
-Accuracy Gaussian Naive Bayes: 0.7538461538461538
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy KNN: 0.7461538461538462
+Accuracy Gaussian Naive Bayes: 0.7769230769230769
 </pre></div>
 </div>
 </div>
