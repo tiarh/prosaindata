@@ -414,12 +414,13 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/prosaindata/tugas/PTA.xlsx&#39;</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-07998ab0-f267-4f2d-b8a0-9c49a13ed035">
+  <div id="df-d299bbe2-534b-4ef1-b89f-9184217b8a11">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -539,7 +540,7 @@ document.write(`
 </table>
 <p>811 rows × 5 columns</p>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-07998ab0-f267-4f2d-b8a0-9c49a13ed035')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-d299bbe2-534b-4ef1-b89f-9184217b8a11')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
         
@@ -590,12 +591,12 @@ document.write(`
 
       <script>
         const buttonEl =
-          document.querySelector('#df-07998ab0-f267-4f2d-b8a0-9c49a13ed035 button.colab-df-convert');
+          document.querySelector('#df-d299bbe2-534b-4ef1-b89f-9184217b8a11 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-07998ab0-f267-4f2d-b8a0-9c49a13ed035');
+          const element = document.querySelector('#df-d299bbe2-534b-4ef1-b89f-9184217b8a11');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -614,7 +615,31 @@ document.write(`
       </script>
     </div>
   </div>
-  </div></div>
+  </div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NPM        0
+Judul      0
+Abstrak    0
+Prodi      0
+Label      0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#mengecek total label</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>komputasi    574
+RPL          198
+PBA           39
+Name: Label, dtype: int64
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -634,6 +659,7 @@ document.write(`
 <span class="c1"># Pengubahan dilakukan dengan mengaplikasikan fungsi split() pada setiap teks pada kolom &quot;Abstrak&quot;. </span>
 <span class="c1"># lambda x digunakan untuk mengakses setiap teks pada kolom &quot;Abstrak&quot; secara individual.</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Abstrak&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Abstrak&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Abstrak&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 
 <span class="c1"># membagi dataset ke dalam train set dan test set. Data yang akan digunakan untuk training disimpan dalam variabel X_train dan y_train</span>
 <span class="c1"># sementara data yang akan digunakan untuk pengujian atau testing disimpan dalam variabel X_test dan y_test. </span>
@@ -692,7 +718,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy KNN: 0.7461538461538462
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    [Sistem, informasi, akademik, (SIAKAD), merupa...
+1    [Berjalannya, koneksi, jaringan, komputer, den...
+2    [Web, server, adalah, sebuah, perangkat, lunak...
+3    [Penjadwalan, kuliah, di, Perguruan, Tinggi, m...
+4    [Seiring, perkembangan, teknologi, yang, ada, ...
+Name: Abstrak, dtype: object
+Accuracy KNN: 0.7846153846153846
 Accuracy Gaussian Naive Bayes: 0.7769230769230769
 </pre></div>
 </div>
