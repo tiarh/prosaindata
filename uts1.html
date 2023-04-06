@@ -60,7 +60,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'coba';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'uts1';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -237,7 +237,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fcoba.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Futs1.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -267,7 +267,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/coba.ipynb" target="_blank"
+      <li><a href="_sources/uts1.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -371,7 +371,103 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <p>#COBA</p>
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">Word2Vec</span>
+
+<span class="c1"># Dataset</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/prosaindata/tugas/PTA.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+<span class="c1"># Preprocessing</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Abstrak&#39;</span><span class="p">])</span>
+<span class="n">corpus</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Abstrak&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="p">(</span><span class="n">corpus</span><span class="p">,</span> <span class="n">vector_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">min_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># Transformasi corpus menjadi vektor</span>
+<span class="n">vectors</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">wv</span>
+
+<span class="c1"># Transformasi corpus menjadi vektor</span>
+<span class="n">X</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">corpus</span><span class="p">):</span>
+    <span class="n">sentence_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">100</span><span class="p">,))</span>
+    <span class="n">n_words</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">sentence</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">vectors</span><span class="o">.</span><span class="n">key_to_index</span><span class="p">:</span>
+            <span class="n">sentence_vector</span> <span class="o">+=</span> <span class="n">vectors</span><span class="p">[</span><span class="n">word</span><span class="p">]</span>
+            <span class="n">n_words</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">n_words</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">sentence_vector</span> <span class="o">/=</span> <span class="n">n_words</span>
+    <span class="n">X</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sentence_vector</span><span class="p">)</span>
+
+<span class="c1"># Clustering</span>
+<span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># Labeling</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;komputasi&#39;</span><span class="p">,</span> <span class="s1">&#39;pemrosesan bahasa alami&#39;</span><span class="p">,</span> <span class="s1">&#39;rekayasa perangkat lunak&#39;</span><span class="p">]</span>
+<span class="n">cluster_labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">labels_</span><span class="p">]</span>
+
+<span class="c1"># Menambahkan kolom label pada dataset</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cluster_labels</span>
+
+<span class="c1"># Menyimpan hasil ke file csv</span>
+<span class="n">data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;hasil.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.9/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to &#39;auto&#39; in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">KeyboardInterrupt</span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-2-d5df0069828e&gt;</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/google/colab/drive.py</span> in <span class="ni">mount</span><span class="nt">(mountpoint, force_remount, timeout_ms, readonly)</span>
+<span class="g g-Whitespace">    </span><span class="mi">101</span> <span class="k">def</span> <span class="nf">mount</span><span class="p">(</span><span class="n">mountpoint</span><span class="p">,</span> <span class="n">force_remount</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">timeout_ms</span><span class="o">=</span><span class="mi">120000</span><span class="p">,</span> <span class="n">readonly</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">102</span><span class="w">   </span><span class="sd">&quot;&quot;&quot;Mount your Google Drive at the specified mountpoint path.&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">103</span>   <span class="k">return</span> <span class="n">_mount</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">104</span>       <span class="n">mountpoint</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">105</span>       <span class="n">force_remount</span><span class="o">=</span><span class="n">force_remount</span><span class="p">,</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/google/colab/drive.py</span> in <span class="ni">_mount</span><span class="nt">(mountpoint, force_remount, timeout_ms, ephemeral, readonly)</span>
+<span class="g g-Whitespace">    </span><span class="mi">130</span>   <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">131</span>   <span class="k">if</span> <span class="n">ephemeral</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">132</span>     <span class="n">_message</span><span class="o">.</span><span class="n">blocking_request</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">133</span>         <span class="s1">&#39;request_auth&#39;</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;authType&#39;</span><span class="p">:</span> <span class="s1">&#39;dfs_ephemeral&#39;</span><span class="p">},</span> <span class="n">timeout_sec</span><span class="o">=</span><span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">134</span>     <span class="p">)</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/google/colab/_message.py</span> in <span class="ni">blocking_request</span><span class="nt">(request_type, request, timeout_sec, parent)</span>
+<span class="g g-Whitespace">    </span><span class="mi">175</span>       <span class="n">request_type</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">parent</span><span class="p">,</span> <span class="n">expect_reply</span><span class="o">=</span><span class="kc">True</span>
+<span class="g g-Whitespace">    </span><span class="mi">176</span>   <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">177</span>   <span class="k">return</span> <span class="n">read_reply_from_input</span><span class="p">(</span><span class="n">request_id</span><span class="p">,</span> <span class="n">timeout_sec</span><span class="p">)</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/google/colab/_message.py</span> in <span class="ni">read_reply_from_input</span><span class="nt">(message_id, timeout_sec)</span>
+<span class="g g-Whitespace">     </span><span class="mi">95</span>     <span class="n">reply</span> <span class="o">=</span> <span class="n">_read_next_input_message</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">96</span>     <span class="k">if</span> <span class="n">reply</span> <span class="o">==</span> <span class="n">_NOT_READY</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">reply</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">97</span>       <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.025</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">98</span>       <span class="k">continue</span>
+<span class="g g-Whitespace">     </span><span class="mi">99</span>     <span class="k">if</span> <span class="p">(</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
