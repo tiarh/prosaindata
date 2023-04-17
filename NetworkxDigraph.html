@@ -1,0 +1,646 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mengimport library NetworkX sebagai nx dan Membuat sebuah directed graph &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'NetworkxDigraph';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">TUGAS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="CrawlingBerita.html">Crawling Berita</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CrawlingPTA.html">Crawling PTA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CrawlingTwitter.html">Crawling Twitter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Pipeline.html">Pipeline</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="UTS.html">UTS</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FNetworkxDigraph.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/NetworkxDigraph.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Mengimport library NetworkX sebagai nx dan Membuat sebuah directed graph</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Mengimport library NetworkX sebagai nx dan Membuat sebuah directed graph</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menambahkan-edge-edge-pada-graph">Menambahkan edge-edge pada graph</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-pagerank-menggunakan-method-nx-pagerank">Menghitung pagerank menggunakan method nx.pagerank()</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-algoritma-pagerank-dengan-menggunakan-iterasi-secara-manual-menggunakan-library-networkx">Implementasi algoritma PageRank dengan menggunakan iterasi secara manual menggunakan library NetworkX</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">networkx</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
+Requirement already satisfied: networkx in /usr/local/lib/python3.9/dist-packages (3.1)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="mengimport-library-networkx-sebagai-nx-dan-membuat-sebuah-directed-graph">
+<h1>Mengimport library NetworkX sebagai nx dan Membuat sebuah directed graph<a class="headerlink" href="#mengimport-library-networkx-sebagai-nx-dan-membuat-sebuah-directed-graph" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="menambahkan-edge-edge-pada-graph">
+<h1>Menambahkan edge-edge pada graph<a class="headerlink" href="#menambahkan-edge-edge-pada-graph" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/97842300b4ae857e0cc0c73705a590cfb315bafb1b54981f5c77bc021eca2b26.png" src="_images/97842300b4ae857e0cc0c73705a590cfb315bafb1b54981f5c77bc021eca2b26.png" />
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="menghitung-pagerank-menggunakan-method-nx-pagerank">
+<h1>Menghitung pagerank menggunakan method nx.pagerank()<a class="headerlink" href="#menghitung-pagerank-menggunakan-method-nx-pagerank" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">pagerank</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.85</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{1: 0.09689915195822765,
+ 2: 0.06263175206993643,
+ 3: 0.06263175206993643,
+ 4: 0.06263175206993643,
+ 5: 0.08841462743227774,
+ 6: 0.11503339715277891,
+ 7: 0.1452300660820026,
+ 8: 0.1705332087914881,
+ 9: 0.19599429237341554}
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="implementasi-algoritma-pagerank-dengan-menggunakan-iterasi-secara-manual-menggunakan-library-networkx">
+<h1>Implementasi algoritma PageRank dengan menggunakan iterasi secara manual menggunakan library NetworkX<a class="headerlink" href="#implementasi-algoritma-pagerank-dengan-menggunakan-iterasi-secara-manual-menggunakan-library-networkx" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pagerank_iter</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.85</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1.0e-6</span><span class="p">):</span>
+    <span class="n">pr</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="n">G</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">()</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">()}</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Iteration 0: </span><span class="si">{</span><span class="n">pr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">):</span>
+        <span class="n">old_pr</span> <span class="o">=</span> <span class="n">pr</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">diff</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
+            <span class="n">incoming_edges</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">in_edges</span><span class="p">(</span><span class="n">node</span><span class="p">))</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">incoming_edges</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">pr</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">incoming_weights</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">old_pr</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">out_edges</span><span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">incoming_edges</span><span class="p">])</span>
+                <span class="n">pr</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">/</span> <span class="n">G</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">()</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">incoming_weights</span>
+            <span class="n">diff</span> <span class="o">+=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">pr</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">-</span> <span class="n">old_pr</span><span class="p">[</span><span class="n">node</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Iteration </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">pr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">diff</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="k">return</span> <span class="n">pr</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pagerank_iter</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.85</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 0: {1: 0.1111111111111111, 2: 0.1111111111111111, 3: 0.1111111111111111, 4: 0.1111111111111111, 5: 0.1111111111111111, 6: 0.1111111111111111, 7: 0.1111111111111111, 8: 0.1111111111111111, 9: 0.1111111111111111}
+Iteration 1: {1: 0.06388888888888888, 2: 0.04814814814814815, 3: 0.04814814814814815, 4: 0.04814814814814815, 5: 0.1111111111111111, 6: 0.15833333333333333, 7: 0.1111111111111111, 8: 0.15833333333333333, 9: 0.15833333333333333}
+Iteration 2: {1: 0.06388888888888888, 2: 0.03476851851851852, 3: 0.03476851851851852, 4: 0.03476851851851852, 5: 0.0575925925925926, 6: 0.07805555555555554, 7: 0.13118055555555555, 8: 0.19847222222222222, 9: 0.1516435185185185}
+Iteration 3: {1: 0.07241840277777778, 2: 0.03476851851851852, 3: 0.03476851851851852, 4: 0.03476851851851852, 5: 0.04621990740740741, 6: 0.06099652777777778, 7: 0.12549421296296295, 8: 0.10749074074074072, 9: 0.1715457175925926}
+Iteration 4: {1: 0.07000170717592592, 2: 0.037185214120370375, 3: 0.037185214120370375, 4: 0.037185214120370375, 5: 0.04621990740740741, 6: 0.06099652777777778, 7: 0.08199369212962962, 8: 0.08815717592592592, 9: 0.13046189236111108}
+Iteration 5: {1: 0.051513985821759256, 2: 0.03650048369984568, 3: 0.03650048369984568, 4: 0.03650048369984568, 5: 0.04827409866898149, 6: 0.0640778146701389, 7: 0.07377692708333333, 8: 0.08815717592592592, 9: 0.10478450159143518}
+Iteration 6: {1: 0.04802186067708333, 2: 0.03126229598283179, 3: 0.03126229598283179, 4: 0.03126229598283179, 5: 0.0476920778115355, 6: 0.06320478338396991, 7: 0.07464995836950232, 8: 0.09164930107060187, 9: 0.10100136601803628}
+Iteration 7: {1: 0.048392898973705155, 2: 0.03027286052517361, 3: 0.03027286052517361, 4: 0.03027286052517361, 5: 0.04323961825207369, 6: 0.0565260940447772, 7: 0.07588675269157505, 8: 0.09065986561294367, 9: 0.10063032772141448}
+Iteration 8: {1: 0.04891853656058606, 2: 0.0303779880425498, 3: 0.0303779880425498, 4: 0.0303779880425498, 5: 0.042398598113064234, 6: 0.05526456383626303, 7: 0.07357394730929906, 8: 0.0830906843618586, 9: 0.10031494516928591}
+Iteration 9: {1: 0.04793559427311877, 2: 0.030526918692166054, 3: 0.030526918692166054, 4: 0.030526918692166054, 5: 0.042487956502834, 6: 0.05539860142091767, 7: 0.06999961171850888, 8: 0.08166095012554253, 9: 0.09615978004499234}
+Iteration 10: {1: 0.04641650164703294, 2: 0.030248418377383655, 3: 0.030248418377383655, 4: 0.030248418377383655, 5: 0.04261454755500782, 6: 0.055588487999178385, 7: 0.06942995198372669, 8: 0.08181285938815114, 9: 0.09409634589455909}
+Iteration 11: {1: 0.04617439625975051, 2: 0.02981800879999267, 3: 0.02981800879999267, 4: 0.02981800879999267, 5: 0.04237782228744277, 6: 0.05523340009783083, 7: 0.06954831461750922, 8: 0.08202806417684663, 9: 0.09380043931010279}
+Iteration 12: {1: 0.046224700379108086, 2: 0.029749412273595982, 3: 0.029749412273595982, 4: 0.029749412273595982, 5: 0.04201197414666044, 6: 0.054684627886657323, 7: 0.06953916841398966, 8: 0.08162563122198604, 9: 0.09375928139426479}
+Iteration 13: {1: 0.04622081324261228, 2: 0.02976366510741396, 3: 0.02976366510741396, 4: 0.02976366510741396, 5: 0.041953667099223255, 6: 0.054597167315501544, 7: 0.06921264894834142, 8: 0.08100368938265609, 9: 0.09355520672823464}
+Iteration 14: {1: 0.04608204246971177, 2: 0.02976256375207348, 3: 0.02976256375207348, 4: 0.02976256375207348, 5: 0.041965782007968536, 6: 0.05461533967861947, 7: 0.06892354317146539, 8: 0.08090456740201288, 9: 0.09315816812799155}
+Iteration 15: {1: 0.04595917251453946, 2: 0.02972324536641834, 3: 0.02972324536641834, 4: 0.02972324536641834, 5: 0.04196484585592913, 6: 0.054613935450560355, 7: 0.06888656516590877, 8: 0.08092516274687986, 9: 0.09299270325502618}
+Iteration 16: {1: 0.04594345686217789, 2: 0.029688432212452848, 3: 0.029688432212452848, 4: 0.029688432212452848, 5: 0.04193142522812226, 6: 0.05456380450885005, 7: 0.06889492032286049, 8: 0.08092357128841285, 9: 0.09296903031032963}
+Iteration 17: {1: 0.045947007803882375, 2: 0.02968397944428374, 3: 0.02968397944428374, 4: 0.02968397944428374, 5: 0.04190183404725159, 6: 0.05451941773754405, 7: 0.06888004018619409, 8: 0.08086675622114117, 9: 0.0929571092917503}
+Iteration 18: {1: 0.045940683745799155, 2: 0.029684985544433343, 3: 0.029684985544433343, 4: 0.029684985544433343, 5: 0.041898049194307854, 6: 0.054513740458128436, 7: 0.06884331753073358, 8: 0.08081645121366104, 9: 0.09292474640360474}
+Iteration 19: {1: 0.045925076617228444, 2: 0.029683193727976433, 3: 0.029683193727976433, 4: 0.029683193727976433, 5: 0.04189890437943501, 6: 0.05451502323581918, 7: 0.06882032934005344, 8: 0.08081001696365667, 9: 0.09288818723941855}
+Iteration 20: {1: 0.04591530663618938, 2: 0.02967877170821473, 3: 0.02967877170821473, 4: 0.02967877170821473, 5: 0.04189738133544664, 6: 0.05451273866983662, 7: 0.06881795823748063, 8: 0.08081147077837286, 9: 0.09287492118013344}
+Iteration 21: {1: 0.045914298917595936, 2: 0.029676003546920328, 3: 0.029676003546920328, 4: 0.029676003546920328, 5: 0.04189362261864919, 6: 0.05450710059464045, 7: 0.06881792881503995, 8: 0.08080888160359262, 9: 0.09287265197439568}
+Iteration 22: {1: 0.04591428641305865, 2: 0.029675718026652184, 3: 0.029675718026652184, 4: 0.029675718026652184, 5: 0.04189126968154895, 6: 0.05450357118899009, 7: 0.06881523096111944, 8: 0.08080249178503696, 9: 0.09287036260202663}
+Iteration 23: {1: 0.04591313982514243, 2: 0.029675714483699954, 3: 0.029675714483699954, 4: 0.029675714483699954, 5: 0.041891026989321026, 6: 0.05450320715064821, 7: 0.06881151528996568, 8: 0.08079849179196655, 9: 0.0928663789951103}
+Iteration 24: {1: 0.04591156066490208, 2: 0.029675389617123692, 3: 0.029675389617123692, 4: 0.029675389617123692, 5: 0.04189102397781163, 6: 0.05450320263338411, 7: 0.0688097121487139, 8: 0.08079807921517909, 9: 0.09286309833206036}
+Iteration 25: {1: 0.04591079432987008, 2: 0.029674942188388925, 3: 0.029674942188388925, 4: 0.029674942188388925, 5: 0.041890747841221807, 6: 0.05450278842849938, 7: 0.06880953552368774, 8: 0.0807980740956131, 9: 0.09286201858359874}
+Iteration 26: {1: 0.04591071926423396, 2: 0.02967472506012986, 3: 0.02967472506012986, 4: 0.02967472506012986, 5: 0.041890367526797256, 6: 0.054502217956862546, 7: 0.0688094159898215, 8: 0.0807976046634104, 9: 0.09286175118493481}
+Iteration 27: {1: 0.045910668462340806, 2: 0.029674703791532957, 3: 0.029674703791532957, 4: 0.029674703791532957, 5: 0.04189018296777705, 6: 0.05450194111833224, 7: 0.06880905484750492, 8: 0.08079695812888868, 9: 0.0928614085948454}
+Iteration 28: {1: 0.04591051497685626, 2: 0.029674689397663233, 3: 0.029674689397663233, 4: 0.029674689397663233, 5: 0.041890164889469686, 6: 0.05450191400087119, 7: 0.0688087016327496, 8: 0.08079664437855433, 9: 0.09286097129303544}
+Iteration 29: {1: 0.04591036486058525, 2: 0.02967464591010928, 3: 0.02967464591010928, 4: 0.02967464591010928, 5: 0.04189015265468042, 6: 0.054501895648687286, 7: 0.06880856060557687, 8: 0.08079661364543181, 9: 0.0928606817154777}
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{1: 0.04591036486058525,
+ 2: 0.02967464591010928,
+ 3: 0.02967464591010928,
+ 4: 0.02967464591010928,
+ 5: 0.04189015265468042,
+ 6: 0.054501895648687286,
+ 7: 0.06880856060557687,
+ 8: 0.08079661364543181,
+ 9: 0.0928606817154777}
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Mengimport library NetworkX sebagai nx dan Membuat sebuah directed graph</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menambahkan-edge-edge-pada-graph">Menambahkan edge-edge pada graph</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-pagerank-menggunakan-method-nx-pagerank">Menghitung pagerank menggunakan method nx.pagerank()</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-algoritma-pagerank-dengan-menggunakan-iterasi-secara-manual-menggunakan-library-networkx">Implementasi algoritma PageRank dengan menggunakan iterasi secara manual menggunakan library NetworkX</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1142 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text Summarization in Python &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Text-Summarization';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">TUGAS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="CrawlingBerita.html">Crawling Berita</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CrawlingPTA.html">Crawling PTA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CrawlingTwitter.html">Crawling Twitter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Pipeline.html">Pipeline</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="UTS.html">UTS</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FText-Summarization.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Text-Summarization.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Text Summarization in Python</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Text Summarization in Python</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation">Motivation:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">Implementation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-important-libraries">1. Importing important libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-to-read-the-document-from-user">2.  Function to read the document from user</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-to-tokenize-the-document">3. Function to tokenize the document</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-the-document">4. Read the document</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-a-list-of-sentences-in-the-document">5. Generate a list of sentences in the document</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-term-document-matrix-td-matrix-of-the-data">6. Generate term-document matrix (TD matrix) of the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-the-rank-of-every-sentence-using-textrank">8. Getting the rank of every sentence using textrank</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-important-sentences-and-generating-summary">9. Finding important sentences and generating summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-the-summary-to-a-new-file">10. Writing the summary to a new file</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="tex2jax_ignore mathjax_ignore section" id="text-summarization-in-python">
+<h1>Text Summarization in Python<a class="headerlink" href="#text-summarization-in-python" title="Permalink to this heading">#</a></h1>
+<div class="section" id="motivation">
+<h2>Motivation:<a class="headerlink" href="#motivation" title="Permalink to this heading">#</a></h2>
+<p>The length of textual data is increasing and people have less time. Often the newspaper articles run into a long text of, say 1000 -1200 words. As wearable devices leap to prominence (Google Glass, Apple Watch, to name a few), content must adapt to the limited screen space available on these devices.
+The task of generating intelligent and accurate summaries for long pieces of text has become a popular research as well as industry problem.</p>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="implementation">
+<h1>Implementation<a class="headerlink" href="#implementation" title="Permalink to this heading">#</a></h1>
+<div class="section" id="importing-important-libraries">
+<h2>1. Importing important libraries<a class="headerlink" href="#importing-important-libraries" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">PyPDF2</span>
+<span class="kn">import</span> <span class="nn">docx2txt</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline 
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">from</span> <span class="nn">nltk.tokenize.punkt</span> <span class="kn">import</span> <span class="n">PunktSentenceTokenizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfTransformer</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">ModuleNotFoundError</span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-1-9b8d4e516e80&gt;</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">PyPDF2</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">docx2txt</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">sys</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;PyPDF2&#39;
+
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NOTE</span>: If your import is failing due to a missing package, you can
+<span class="n">manually</span> <span class="n">install</span> <span class="n">dependencies</span> <span class="n">using</span> <span class="n">either</span> <span class="o">!</span>pip<span class="w"> </span>or<span class="w"> </span>!apt.
+
+<span class="n">To</span> <span class="n">view</span> <span class="n">examples</span> <span class="n">of</span> <span class="n">installing</span> <span class="n">some</span> <span class="n">common</span> <span class="n">dependencies</span><span class="p">,</span> <span class="n">click</span> <span class="n">the</span>
+<span class="s2">&quot;Open Examples&quot;</span> <span class="n">button</span> <span class="n">below</span><span class="o">.</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="function-to-read-the-document-from-user">
+<h2>2.  Function to read the document from user<a class="headerlink" href="#function-to-read-the-document-from-user" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we are going to show an example of how the method is working</span>
+<span class="c1"># first let&#39;s take the document as an input</span>
+<span class="k">def</span> <span class="nf">readDoc</span><span class="p">():</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Please input a file name: &#39;</span><span class="p">)</span> 
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;You have asked for the document </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+
+    <span class="c1"># now read the type of document</span>
+    <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.txt&#39;</span><span class="p">):</span>
+        <span class="n">choice</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.pdf&#39;</span><span class="p">):</span>
+        <span class="n">choice</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">choice</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="c1"># print(name)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">choice</span><span class="p">)</span>
+    <span class="c1"># Case 1: if it is a .txt file</span>
+        
+    <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+        <span class="n">document</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            
+    <span class="c1"># Case 2: if it is a .pdf file</span>
+    <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">pdfFileObj</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+        <span class="n">pdfReader</span> <span class="o">=</span> <span class="n">PyPDF2</span><span class="o">.</span><span class="n">PdfFileReader</span><span class="p">(</span><span class="n">pdfFileObj</span><span class="p">)</span>
+        <span class="n">pageObj</span> <span class="o">=</span> <span class="n">pdfReader</span><span class="o">.</span><span class="n">getPage</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">document</span> <span class="o">=</span> <span class="n">pageObj</span><span class="o">.</span><span class="n">extractText</span><span class="p">()</span>
+        <span class="n">pdfFileObj</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    
+    <span class="c1"># Case 3: none of the format</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Failed to load a valid file&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Returning an empty string&#39;</span><span class="p">)</span>
+        <span class="n">document</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">document</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">document</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="function-to-tokenize-the-document">
+<h2>3. Function to tokenize the document<a class="headerlink" href="#function-to-tokenize-the-document" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the function used for tokenizing the sentences</span>
+<span class="c1"># tokenization of a sentence: &#39;&#39;&#39;provided in cell() above&#39;&#39;&#39;</span>
+
+<span class="k">def</span> <span class="nf">tokenize</span><span class="p">(</span><span class="n">document</span><span class="p">):</span>
+    <span class="c1"># We are tokenizing using the PunktSentenceTokenizer</span>
+    <span class="c1"># we call an instance of this class as sentence_tokenizer</span>
+    <span class="n">doc_tokenizer</span> <span class="o">=</span> <span class="n">PunktSentenceTokenizer</span><span class="p">()</span>
+    
+    <span class="c1"># tokenize() method: takes our document as input and returns a list of all the sentences in the document</span>
+    
+    <span class="c1"># sentences is a list containing each sentence of the document as an element</span>
+    <span class="n">sentences_list</span> <span class="o">=</span> <span class="n">doc_tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sentences_list</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="read-the-document">
+<h2>4. Read the document<a class="headerlink" href="#read-the-document" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># reading a file and </span>
+<span class="c1"># printing the size of the file</span>
+<span class="n">document</span> <span class="o">=</span> <span class="n">readDoc</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The length of the file is:&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">document</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Please input a file name: text.txt
+You have asked for the document text.txt
+1
+&lt;class &#39;str&#39;&gt;
+The length of the file is: 4154
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="generate-a-list-of-sentences-in-the-document">
+<h2>5. Generate a list of sentences in the document<a class="headerlink" href="#generate-a-list-of-sentences-in-the-document" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we want to tokenize the document for further processing</span>
+<span class="c1"># tokenizing the sentence means that we are creating a list of all the sentences of the document.</span>
+<span class="c1"># Need of tokenizing the document: Initially the document is in just a string format.</span>
+<span class="c1"># if we want to process the document, we need to store it in a data structure.</span>
+<span class="c1"># Tokenization of document into words is also possible, but we will go with the tokenizing with the sentences</span>
+<span class="c1"># Since we want to choose the most relevant sentences, we need to generate tokens of sentences only</span>
+<span class="n">sentences_list</span> <span class="o">=</span> <span class="n">tokenize</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
+
+<span class="c1"># let us print the size of memory used by the list sentences</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The size of the list in Bytes is: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">sentences_list</span><span class="p">)))</span>
+
+<span class="c1"># the size of one of the element of the list</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The size of the item 0 in Bytes is: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">sentences_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The size of the list in Bytes is: 272
+The size of the item 0 in Bytes is: 263
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># let us see the data type of sentences_list</span>
+<span class="c1"># It will be list</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">sentences_list</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;list&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># let us analyse the elements of the sentences</span>
+<span class="c1"># len() method applies on the list and provides the number of elements in the list</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The size of the list &quot;sentences&quot; is: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sentences_list</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The size of the list &quot;sentences&quot; is: 27
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print the elements of the list</span>
+<span class="c1"># If the input document is long, which on realistically will be wrong, we would not like to print the entire document</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sentences_list</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AI, ChatGPT Poised to Potentially Transform Healthcare, Science
+A new report from Accenture states that ChatGPT is continuing to grow in application, finding new ways to transform healthcare, business, and science.
+AI chatbot.
+April 12, 2023 - According to a new report from Accenture, the growth of artificial intelligence (AI) and ChatGPT is leading to transformations in science, business, healthcare, and society, positively impacting human creativity and productivity.
+With advancements in modern technology, researchers are continuing to develop various types of AI, using it to transform different systems and processes.
+According to the report, 98 percent of global executives agreed that in the next three to five years, their organizations&#39; strategies would involve AI foundation models.
+Amid the growing prominence of AI, ChatGPT is a service that continues to gain recognition for performing various types of tasks within several industries, one of which is healthcare.
+ChatGPT is a natural language processing tool driven by AI.
+Dig Deeper
+ChatGPT Capable of Answering CBME Microbiology Questions
+ChatGPT Provides Accurate Information on Cancer Myths, Misconceptions
+ChatGPT Passes US Medical Licensing Exam Without Clinician Input
+In February, researchers from Massachusetts General Hospital (MGH) and AnsibleHealth found that ChatGPT can pass the United States Medical Licensing Exam (USMLE).
+Along with this, their research indicated that the tool could impact medical education.
+According to the report from Accenture, 42 percent of companies expressed interest in making a large ChatGPT investment in 2023.
+Solutions such as this have the potential to transform industry practices.
+However, there are certain steps that can maximize the abilities of AI.
+These include maintaining a business-driven goal, prioritizing people, preparing enough proprietary data, and making appropriate investments in technology infrastructure, architecture, operating model, and governance structure.
+However, the growth of ChatGPT also brings forth questions surrounding responsibility in using AI, specifically regarding legal, ethical, or reputation risks that may be involved.
+The report suggests building risk assessment controls at the design stage and implementing responsible AI principles throughout the business.
+The report concluded that reinventing work to allow AI to gain a valuable place would be in a company&#39;s best interest.
+The use of AI and ChatGPT in healthcare continues to grow as researchers discover the various ways it can provide support.
+For example, researchers wrote in Cureus in March that ChatGPT could answer first-order and second-order questions in line with the competency-based medical education (CBME) curriculum for microbiology.
+Researchers noted that a major reason for this study was due to limited evidence related to the abilities of ChatGPT to answer first- and second-order knowledge questions.
+This study involved authors preparing six first- and six second-order knowledge questions according to the eight modules.
+They defined first-order knowledge questions as more straightforward and second-order knowledge questions as more complex.
+Following reviews for content validity and insertion into ChatGPT, they found that ChatGPT reached an overall accuracy of 80 percent with limited differences in its ability to answer the two types of questions.
+These findings led them to conclude that ChatGPT could answer both types of questions related to microbiology.
+Another study from March found that ChatGPT provided accurate information when questioned about potential cancer myths and misconceptions.
+Researchers pulled questions from the National Cancer Institute&#39;s (NCI) “Common Cancer Myths and Misconceptions” web page to guide this study, comparing NCI answers to those delivered by ChatGPT.
+Following review, they found that the percentage of overall agreement for accuracy was 100 percent for NCI answers and 96.9 percent for ChatGPT answers.
+Despite this high percentage, researchers noted that ChatGPT language was often unclear, meaning that users could incorrectly interpret information.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="generate-term-document-matrix-td-matrix-of-the-data">
+<h2>6. Generate term-document matrix (TD matrix) of the data<a class="headerlink" href="#generate-term-document-matrix-td-matrix-of-the-data" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert a collection of text documents to a matrix of token counts</span>
+<span class="c1"># fit_transform method of CountVectorizer() class </span>
+<span class="c1"># Learn the vocabulary dictionary and return term-document matrix. </span>
+<span class="c1"># I/p: An iterable which yields either str, unicode or file objects.</span>
+<span class="c1"># O/p: The term-document matrix named cv_matrix</span>
+<span class="n">cv</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">()</span>
+<span class="n">cv_matrix</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">sentences_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># a demo of what CountVectorizer().fit_transform(text) does</span>
+<span class="n">cv_demo</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">()</span> <span class="c1"># a demo object of class CountVectorizer</span>
+
+<span class="c1"># I have repeated the words to make a non-ambiguous array of the document text matrix </span>
+
+<span class="n">text_demo</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Ashish is good, you are bad&quot;</span><span class="p">,</span> <span class="s2">&quot;I am not bad&quot;</span><span class="p">]</span> 
+<span class="n">res_demo</span> <span class="o">=</span> <span class="n">cv_demo</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">text_demo</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Result demo array is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">res_demo</span><span class="o">.</span><span class="n">toarray</span><span class="p">()))</span>
+
+<span class="c1"># Result is 2-d matrix containing document text matrix</span>
+<span class="c1"># Notice that in the second row, there is 2.</span>
+<span class="c1"># also, bad is repeated twice in that sentence.</span>
+<span class="c1"># so we can infer that 2 is corresponding to the word &#39;bad&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Feature list: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cv_demo</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Result demo array is [[0 1 1 1 1 1 0 1]
+ [1 0 0 1 0 0 1 0]]
+Feature list: [&#39;am&#39; &#39;are&#39; &#39;ashish&#39; &#39;bad&#39; &#39;good&#39; &#39;is&#39; &#39;not&#39; &#39;you&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># printing the cv_matrix type</span>
+<span class="c1"># and how it is being stored in memory?</span>
+<span class="c1"># it is stored in the compressed row format</span>
+<span class="c1"># compressed row format: </span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The data type of bow matrix </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">cv_matrix</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of the matrix </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cv_matrix</span><span class="o">.</span><span class="n">get_shape</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Size of the matrix is: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">cv_matrix</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cv</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cv_matrix</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The data type of bow matrix &lt;class &#39;scipy.sparse._csr.csr_matrix&#39;&gt;
+Shape of the matrix &lt;bound method spmatrix.get_shape of &lt;27x290 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
+	with 542 stored elements in Compressed Sparse Row format&gt;&gt;
+Size of the matrix is: 48
+[&#39;100&#39; &#39;12&#39; &#39;2023&#39; &#39;42&#39; &#39;80&#39; &#39;96&#39; &#39;98&#39; &#39;abilities&#39; &#39;ability&#39; &#39;about&#39;
+ &#39;accenture&#39; &#39;according&#39; &#39;accuracy&#39; &#39;accurate&#39; &#39;advancements&#39; &#39;agreed&#39;
+ &#39;agreement&#39; &#39;ai&#39; &#39;allow&#39; &#39;along&#39; &#39;also&#39; &#39;amid&#39; &#39;an&#39; &#39;and&#39; &#39;another&#39;
+ &#39;ansiblehealth&#39; &#39;answer&#39; &#39;answering&#39; &#39;answers&#39; &#39;application&#39;
+ &#39;appropriate&#39; &#39;april&#39; &#39;architecture&#39; &#39;are&#39; &#39;artificial&#39; &#39;as&#39; &#39;assessment&#39;
+ &#39;at&#39; &#39;authors&#39; &#39;based&#39; &#39;be&#39; &#39;best&#39; &#39;both&#39; &#39;brings&#39; &#39;building&#39; &#39;business&#39;
+ &#39;by&#39; &#39;can&#39; &#39;cancer&#39; &#39;capable&#39; &#39;cbme&#39; &#39;certain&#39; &#39;chatbot&#39; &#39;chatgpt&#39;
+ &#39;clinician&#39; &#39;common&#39; &#39;companies&#39; &#39;company&#39; &#39;comparing&#39; &#39;competency&#39;
+ &#39;complex&#39; &#39;conclude&#39; &#39;concluded&#39; &#39;content&#39; &#39;continues&#39; &#39;continuing&#39;
+ &#39;controls&#39; &#39;could&#39; &#39;creativity&#39; &#39;cureus&#39; &#39;curriculum&#39; &#39;data&#39; &#39;deeper&#39;
+ &#39;defined&#39; &#39;delivered&#39; &#39;design&#39; &#39;despite&#39; &#39;develop&#39; &#39;differences&#39;
+ &#39;different&#39; &#39;dig&#39; &#39;discover&#39; &#39;driven&#39; &#39;due&#39; &#39;education&#39; &#39;eight&#39; &#39;enough&#39;
+ &#39;ethical&#39; &#39;evidence&#39; &#39;exam&#39; &#39;example&#39; &#39;executives&#39; &#39;expressed&#39; &#39;february&#39;
+ &#39;finding&#39; &#39;findings&#39; &#39;first&#39; &#39;five&#39; &#39;following&#39; &#39;for&#39; &#39;forth&#39; &#39;found&#39;
+ &#39;foundation&#39; &#39;from&#39; &#39;gain&#39; &#39;general&#39; &#39;global&#39; &#39;goal&#39; &#39;governance&#39; &#39;grow&#39;
+ &#39;growing&#39; &#39;growth&#39; &#39;guide&#39; &#39;have&#39; &#39;healthcare&#39; &#39;high&#39; &#39;hospital&#39;
+ &#39;however&#39; &#39;human&#39; &#39;impact&#39; &#39;impacting&#39; &#39;implementing&#39; &#39;in&#39; &#39;include&#39;
+ &#39;incorrectly&#39; &#39;indicated&#39; &#39;industries&#39; &#39;industry&#39; &#39;information&#39;
+ &#39;infrastructure&#39; &#39;input&#39; &#39;insertion&#39; &#39;institute&#39; &#39;intelligence&#39;
+ &#39;interest&#39; &#39;interpret&#39; &#39;into&#39; &#39;investment&#39; &#39;investments&#39; &#39;involve&#39;
+ &#39;involved&#39; &#39;is&#39; &#39;it&#39; &#39;its&#39; &#39;knowledge&#39; &#39;language&#39; &#39;large&#39; &#39;leading&#39; &#39;led&#39;
+ &#39;legal&#39; &#39;licensing&#39; &#39;limited&#39; &#39;line&#39; &#39;maintaining&#39; &#39;major&#39; &#39;making&#39;
+ &#39;march&#39; &#39;massachusetts&#39; &#39;maximize&#39; &#39;may&#39; &#39;meaning&#39; &#39;medical&#39; &#39;mgh&#39;
+ &#39;microbiology&#39; &#39;misconceptions&#39; &#39;model&#39; &#39;models&#39; &#39;modern&#39; &#39;modules&#39;
+ &#39;more&#39; &#39;myths&#39; &#39;national&#39; &#39;natural&#39; &#39;nci&#39; &#39;new&#39; &#39;next&#39; &#39;noted&#39; &#39;of&#39;
+ &#39;often&#39; &#39;on&#39; &#39;one&#39; &#39;operating&#39; &#39;or&#39; &#39;order&#39; &#39;organizations&#39; &#39;overall&#39;
+ &#39;page&#39; &#39;pass&#39; &#39;passes&#39; &#39;people&#39; &#39;percent&#39; &#39;percentage&#39; &#39;performing&#39;
+ &#39;place&#39; &#39;poised&#39; &#39;positively&#39; &#39;potential&#39; &#39;potentially&#39; &#39;practices&#39;
+ &#39;preparing&#39; &#39;principles&#39; &#39;prioritizing&#39; &#39;processes&#39; &#39;processing&#39;
+ &#39;productivity&#39; &#39;prominence&#39; &#39;proprietary&#39; &#39;provide&#39; &#39;provided&#39; &#39;provides&#39;
+ &#39;pulled&#39; &#39;questioned&#39; &#39;questions&#39; &#39;reached&#39; &#39;reason&#39; &#39;recognition&#39;
+ &#39;regarding&#39; &#39;reinventing&#39; &#39;related&#39; &#39;report&#39; &#39;reputation&#39; &#39;research&#39;
+ &#39;researchers&#39; &#39;responsibility&#39; &#39;responsible&#39; &#39;review&#39; &#39;reviews&#39; &#39;risk&#39;
+ &#39;risks&#39; &#39;science&#39; &#39;second&#39; &#39;service&#39; &#39;several&#39; &#39;six&#39; &#39;society&#39;
+ &#39;solutions&#39; &#39;specifically&#39; &#39;stage&#39; &#39;states&#39; &#39;steps&#39; &#39;straightforward&#39;
+ &#39;strategies&#39; &#39;structure&#39; &#39;study&#39; &#39;such&#39; &#39;suggests&#39; &#39;support&#39;
+ &#39;surrounding&#39; &#39;systems&#39; &#39;tasks&#39; &#39;technology&#39; &#39;that&#39; &#39;the&#39; &#39;their&#39; &#39;them&#39;
+ &#39;there&#39; &#39;these&#39; &#39;they&#39; &#39;this&#39; &#39;those&#39; &#39;three&#39; &#39;throughout&#39; &#39;to&#39; &#39;tool&#39;
+ &#39;transform&#39; &#39;transformations&#39; &#39;two&#39; &#39;types&#39; &#39;unclear&#39; &#39;united&#39; &#39;us&#39; &#39;use&#39;
+ &#39;users&#39; &#39;using&#39; &#39;usmle&#39; &#39;validity&#39; &#39;valuable&#39; &#39;various&#39; &#39;was&#39; &#39;ways&#39;
+ &#39;web&#39; &#39;when&#39; &#39;which&#39; &#39;with&#39; &#39;within&#39; &#39;without&#39; &#39;work&#39; &#39;would&#39; &#39;wrote&#39;
+ &#39;years&#39;]
+[[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 1 1 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tnormalized: document-term matrix normalized (value 0-1) according to the TF-IDF</span>
+<span class="c1"># TF(Term Frequency): the no. of times a term(a word here) appears in the current document(single sentence here)</span>
+<span class="c1"># IDF(Inverse Document Frequency): the no. of times a term(a word here) appears in the entire corpus</span>
+<span class="c1"># Corpus: set of all sentences</span>
+
+<span class="n">normal_matrix</span> <span class="o">=</span> <span class="n">TfidfTransformer</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">cv_matrix</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">normal_matrix</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.         0.         0.         ... 0.         0.         0.        ]
+ [0.         0.         0.         ... 0.         0.         0.        ]
+ [0.         0.21144896 0.18788924 ... 0.         0.         0.        ]
+ ...
+ [0.         0.         0.         ... 0.         0.         0.        ]
+ [0.22085772 0.         0.         ... 0.         0.         0.        ]
+ [0.         0.         0.         ... 0.         0.         0.        ]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">normal_matrix</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">toarray</span><span class="p">)</span>
+<span class="n">res_graph</span> <span class="o">=</span> <span class="n">normal_matrix</span> <span class="o">*</span> <span class="n">normal_matrix</span><span class="o">.</span><span class="n">T</span>
+<span class="c1"># plt.spy(res_graph)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;bound method _cs_matrix.toarray of &lt;290x27 sparse matrix of type &#39;&lt;class &#39;numpy.float64&#39;&gt;&#39;
+	with 542 stored elements in Compressed Sparse Column format&gt;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># drawing a graph to proceed for the textrank algorithm</span>
+<span class="c1"># nx_graph is a graph developed using the networkx library</span>
+<span class="c1"># each node represents a sentence</span>
+<span class="c1"># an edge represents that they have words in common</span>
+<span class="c1"># the edge weight is the number of words that are common in both of the sentences(nodes)</span>
+<span class="c1"># nx.draw() method is used to draw the graph created</span>
+
+<span class="n">nx_graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">from_scipy_sparse_array</span><span class="p">(</span><span class="n">res_graph</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_circular</span><span class="p">(</span><span class="n">nx_graph</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of edges </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nx_graph</span><span class="o">.</span><span class="n">number_of_edges</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of vertices </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nx_graph</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">()))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The memory used by the graph in Bytes is: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">nx_graph</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of edges 346
+Number of vertices 27
+</pre></div>
+</div>
+<img alt="_images/c7afa5d15f14ac8be536eb9de52f6fc4f4b1570fed6db2e10b350a44bff300a3.png" src="_images/c7afa5d15f14ac8be536eb9de52f6fc4f4b1570fed6db2e10b350a44bff300a3.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The memory used by the graph in Bytes is: 48
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="getting-the-rank-of-every-sentence-using-textrank">
+<h2>8. Getting the rank of every sentence using textrank<a class="headerlink" href="#getting-the-rank-of-every-sentence-using-textrank" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ranks is a dictionary with key=node(sentences) and value=textrank (the rank of each of the sentences)</span>
+<span class="n">ranks</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">pagerank</span><span class="p">(</span><span class="n">nx_graph</span><span class="p">)</span>
+
+<span class="c1"># analyse the data type of ranks</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">ranks</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The size used by the dictionary in Bytes is: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">ranks</span><span class="p">)))</span>
+
+<span class="c1"># print the dictionary</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ranks</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">ranks</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;dict&#39;&gt;
+The size used by the dictionary in Bytes is: 1176
+0 0.04522617030342497
+1 0.026207439907190395
+2 0.044924107142187086
+3 0.04075087523123971
+4 0.0388104750917358
+5 0.03958034954389573
+6 0.03059371199048221
+7 0.037281221941050734
+8 0.031425655667803476
+9 0.04011424612404019
+10 0.03113620030306166
+11 0.03245840109214383
+12 0.02703043932512552
+13 0.033337332634863125
+14 0.03051931473592139
+15 0.036218445065538826
+16 0.04576856354085176
+17 0.04505974803441932
+18 0.05301016118404853
+19 0.03732964045634368
+20 0.031164353979631437
+21 0.043366043198300154
+22 0.038982431010148484
+23 0.03276304625313785
+24 0.03840694958305775
+25 0.036905312814960615
+26 0.031629363845395615
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="finding-important-sentences-and-generating-summary">
+<h2>9. Finding important sentences and generating summary<a class="headerlink" href="#finding-important-sentences-and-generating-summary" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># enumerate method: returns an enumerate object</span>
+<span class="c1"># Use of list Comprehensions</span>
+<span class="c1"># O/p: sentence_array is the sorted(descending order w.r.t. score value) 2-d array of ranks[sentence] and sentence </span>
+<span class="c1"># For example, if there are two sentences: S1 (with a score of S1 = s1) and S2 with score s2, with s2&gt;s1</span>
+<span class="c1"># then sentence_array is [[s2, S2], [s1, S1]]</span>
+<span class="n">sentence_array</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(((</span><span class="n">ranks</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sentences_list</span><span class="p">)),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">sentence_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">sentence_array</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># as sentence_array is in descending order wrt score value</span>
+<span class="c1"># fmax is the largest score value(the score of first element)</span>
+<span class="c1"># fmin is the smallest score value(the score of last element)</span>
+
+<span class="n">rank_max</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">sentence_array</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">rank_min</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">sentence_array</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">sentence_array</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print the largest and smallest value of scores of the sentence</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rank_max</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rank_min</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.05301016118404853
+0.026207439907190395
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normalization of the scores</span>
+<span class="c1"># so that it comes out in the range 0-1</span>
+<span class="c1"># fmax becomes 1</span>
+<span class="c1"># fmin becomes 0</span>
+<span class="c1"># store the normalized values in the list temp_array</span>
+
+<span class="n">temp_array</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># if all sentences have equal ranks, means they are all the same</span>
+<span class="c1"># taking any sentence will give the summary, say the first sentence</span>
+<span class="n">flag</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">if</span> <span class="n">rank_max</span> <span class="o">-</span> <span class="n">rank_min</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">temp_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># If the sentence has different ranks</span>
+<span class="k">if</span> <span class="n">flag</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sentence_array</span><span class="p">)):</span>
+        <span class="n">temp_array</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="nb">float</span><span class="p">(</span><span class="n">sentence_array</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="n">rank_min</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">rank_max</span> <span class="o">-</span> <span class="n">rank_min</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">temp_array</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>27
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculation of threshold:</span>
+<span class="c1"># We take the mean value of normalized scores</span>
+<span class="c1"># any sentence with the normalized score 0.2 more than the mean value is considered to be </span>
+<span class="n">threshold</span> <span class="o">=</span> <span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">temp_array</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">temp_array</span><span class="p">))</span> <span class="o">+</span> <span class="mf">0.2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Separate out the sentences that satiasfy the criteria of having a score above the threshold</span>
+<span class="n">sentence_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">temp_array</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">temp_array</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">temp_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">:</span>
+                <span class="n">sentence_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sentence_array</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">sentence_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sentence_array</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">sentence_list</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="writing-the-summary-to-a-new-file">
+<h2>10. Writing the summary to a new file<a class="headerlink" href="#writing-the-summary-to-a-new-file" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print(sentence_list)</span>
+<span class="n">summary</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sentence_list</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span>
+<span class="c1"># save the data in another file, names sum.txt</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;sum.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;a+&#39;</span><span class="p">)</span>
+<span class="c1">#print(type(f))</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Researchers noted that a major reason for this study was due to limited evidence related to the abilities of ChatGPT to answer first- and second-order knowledge questions. The use of AI and ChatGPT in healthcare continues to grow as researchers discover the various ways it can provide support. AI, ChatGPT Poised to Potentially Transform Healthcare, Science
+A new report from Accenture states that ChatGPT is continuing to grow in application, finding new ways to transform healthcare, business, and science. For example, researchers wrote in Cureus in March that ChatGPT could answer first-order and second-order questions in line with the competency-based medical education (CBME) curriculum for microbiology. April 12, 2023 - According to a new report from Accenture, the growth of artificial intelligence (AI) and ChatGPT is leading to transformations in science, business, healthcare, and society, positively impacting human creativity and productivity. Following reviews for content validity and insertion into ChatGPT, they found that ChatGPT reached an overall accuracy of 80 percent with limited differences in its ability to answer the two types of questions.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function TextIOWrapper.close()&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">lines</span> <span class="ow">in</span> <span class="n">sentence_list</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Researchers noted that a major reason for this study was due to limited evidence related to the abilities of ChatGPT to answer first- and second-order knowledge questions.
+The use of AI and ChatGPT in healthcare continues to grow as researchers discover the various ways it can provide support.
+AI, ChatGPT Poised to Potentially Transform Healthcare, Science
+A new report from Accenture states that ChatGPT is continuing to grow in application, finding new ways to transform healthcare, business, and science.
+For example, researchers wrote in Cureus in March that ChatGPT could answer first-order and second-order questions in line with the competency-based medical education (CBME) curriculum for microbiology.
+April 12, 2023 - According to a new report from Accenture, the growth of artificial intelligence (AI) and ChatGPT is leading to transformations in science, business, healthcare, and society, positively impacting human creativity and productivity.
+Following reviews for content validity and insertion into ChatGPT, they found that ChatGPT reached an overall accuracy of 80 percent with limited differences in its ability to answer the two types of questions.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Text Summarization in Python</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation">Motivation:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">Implementation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-important-libraries">1. Importing important libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-to-read-the-document-from-user">2.  Function to read the document from user</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-to-tokenize-the-document">3. Function to tokenize the document</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-the-document">4. Read the document</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-a-list-of-sentences-in-the-document">5. Generate a list of sentences in the document</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-term-document-matrix-td-matrix-of-the-data">6. Generate term-document matrix (TD matrix) of the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-the-rank-of-every-sentence-using-textrank">8. Getting the rank of every sentence using textrank</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-important-sentences-and-generating-summary">9. Finding important sentences and generating summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-the-summary-to-a-new-file">10. Writing the summary to a new file</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
