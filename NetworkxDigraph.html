@@ -63,7 +63,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'NetworkxDigraph';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Text Summarization in Python" href="Text-Summarization.html" />
+    <link rel="next" title="Text Summarization" href="Text-Summarization.html" />
     <link rel="prev" title="UTS" href="UTS.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -169,12 +169,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 <li class="toctree-l1"><a class="reference internal" href="UTS.html">UTS</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">NetworkxDigraph</a></li>
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="Text-Summarization.html">Text Summarization in Python</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="Text-Summarization.html">Text Summarization</a></li>
 </ul>
 
     </div>
@@ -368,13 +363,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">NetworkxDigraph</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mengimport-library-networkx-sebagai-nx-dan-membuat-sebuah-directed-graph">Mengimport library NetworkX sebagai nx dan Membuat sebuah directed graph</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menambahkan-edge-edge-pada-graph">Menambahkan edge-edge pada graph</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-pagerank-menggunakan-method-nx-pagerank">Menghitung pagerank menggunakan method nx.pagerank()</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-algoritma-pagerank-dengan-menggunakan-iterasi-secara-manual-menggunakan-library-networkx">Implementasi algoritma PageRank dengan menggunakan iterasi secara manual menggunakan library NetworkX</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengimport-library-networkx-sebagai-nx-dan-membuat-sebuah-directed-graph">Mengimport library NetworkX sebagai nx dan Membuat sebuah directed graph</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menambahkan-edge-edge-pada-graph">Menambahkan edge-edge pada graph</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-pagerank-menggunakan-method-nx-pagerank">Menghitung pagerank menggunakan method nx.pagerank()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-algoritma-pagerank-dengan-menggunakan-iterasi-secara-manual-menggunakan-library-networkx">Implementasi algoritma PageRank dengan menggunakan iterasi secara manual menggunakan library NetworkX</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -400,9 +393,8 @@ Requirement already satisfied: networkx in /usr/local/lib/python3.9/dist-package
 </div>
 </div>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="mengimport-library-networkx-sebagai-nx-dan-membuat-sebuah-directed-graph">
-<h1>Mengimport library NetworkX sebagai nx dan Membuat sebuah directed graph<a class="headerlink" href="#mengimport-library-networkx-sebagai-nx-dan-membuat-sebuah-directed-graph" title="Permalink to this heading">#</a></h1>
+<div class="section" id="mengimport-library-networkx-sebagai-nx-dan-membuat-sebuah-directed-graph">
+<h2>Mengimport library NetworkX sebagai nx dan Membuat sebuah directed graph<a class="headerlink" href="#mengimport-library-networkx-sebagai-nx-dan-membuat-sebuah-directed-graph" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
@@ -412,8 +404,8 @@ Requirement already satisfied: networkx in /usr/local/lib/python3.9/dist-package
 </div>
 </div>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="menambahkan-edge-edge-pada-graph">
-<h1>Menambahkan edge-edge pada graph<a class="headerlink" href="#menambahkan-edge-edge-pada-graph" title="Permalink to this heading">#</a></h1>
+<div class="section" id="menambahkan-edge-edge-pada-graph">
+<h2>Menambahkan edge-edge pada graph<a class="headerlink" href="#menambahkan-edge-edge-pada-graph" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
@@ -442,12 +434,12 @@ Requirement already satisfied: networkx in /usr/local/lib/python3.9/dist-package
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/883f5619f5ae4523793c786bedf36aae4609d1c1c5cacabf0b022627fe837e06.png" src="_images/883f5619f5ae4523793c786bedf36aae4609d1c1c5cacabf0b022627fe837e06.png" />
+<img alt="_images/d3e57e82aec46a5f0b96b0a644fa009608184c6468e31999d7f86b7e50d90ea1.png" src="_images/d3e57e82aec46a5f0b96b0a644fa009608184c6468e31999d7f86b7e50d90ea1.png" />
 </div>
 </div>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="menghitung-pagerank-menggunakan-method-nx-pagerank">
-<h1>Menghitung pagerank menggunakan method nx.pagerank()<a class="headerlink" href="#menghitung-pagerank-menggunakan-method-nx-pagerank" title="Permalink to this heading">#</a></h1>
+<div class="section" id="menghitung-pagerank-menggunakan-method-nx-pagerank">
+<h2>Menghitung pagerank menggunakan method nx.pagerank()<a class="headerlink" href="#menghitung-pagerank-menggunakan-method-nx-pagerank" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">pagerank</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.85</span><span class="p">)</span>
@@ -469,8 +461,8 @@ Requirement already satisfied: networkx in /usr/local/lib/python3.9/dist-package
 </div>
 </div>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="implementasi-algoritma-pagerank-dengan-menggunakan-iterasi-secara-manual-menggunakan-library-networkx">
-<h1>Implementasi algoritma PageRank dengan menggunakan iterasi secara manual menggunakan library NetworkX<a class="headerlink" href="#implementasi-algoritma-pagerank-dengan-menggunakan-iterasi-secara-manual-menggunakan-library-networkx" title="Permalink to this heading">#</a></h1>
+<div class="section" id="implementasi-algoritma-pagerank-dengan-menggunakan-iterasi-secara-manual-menggunakan-library-networkx">
+<h2>Implementasi algoritma PageRank dengan menggunakan iterasi secara manual menggunakan library NetworkX<a class="headerlink" href="#implementasi-algoritma-pagerank-dengan-menggunakan-iterasi-secara-manual-menggunakan-library-networkx" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pagerank_iter</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.85</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1.0e-6</span><span class="p">):</span>
@@ -548,6 +540,7 @@ Iteration 29: {1: 0.04591036486058525, 2: 0.02967464591010928, 3: 0.029674645910
 </div>
 </div>
 </div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -594,7 +587,7 @@ Iteration 29: {1: 0.04591036486058525, 2: 0.02967464591010928, 3: 0.029674645910
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Text Summarization in Python</p>
+        <p class="prev-next-title">Text Summarization</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -616,13 +609,11 @@ Iteration 29: {1: 0.04591036486058525, 2: 0.02967464591010928, 3: 0.029674645910
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">NetworkxDigraph</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mengimport-library-networkx-sebagai-nx-dan-membuat-sebuah-directed-graph">Mengimport library NetworkX sebagai nx dan Membuat sebuah directed graph</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menambahkan-edge-edge-pada-graph">Menambahkan edge-edge pada graph</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-pagerank-menggunakan-method-nx-pagerank">Menghitung pagerank menggunakan method nx.pagerank()</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-algoritma-pagerank-dengan-menggunakan-iterasi-secara-manual-menggunakan-library-networkx">Implementasi algoritma PageRank dengan menggunakan iterasi secara manual menggunakan library NetworkX</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengimport-library-networkx-sebagai-nx-dan-membuat-sebuah-directed-graph">Mengimport library NetworkX sebagai nx dan Membuat sebuah directed graph</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menambahkan-edge-edge-pada-graph">Menambahkan edge-edge pada graph</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-pagerank-menggunakan-method-nx-pagerank">Menghitung pagerank menggunakan method nx.pagerank()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-algoritma-pagerank-dengan-menggunakan-iterasi-secara-manual-menggunakan-library-networkx">Implementasi algoritma PageRank dengan menggunakan iterasi secara manual menggunakan library NetworkX</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
