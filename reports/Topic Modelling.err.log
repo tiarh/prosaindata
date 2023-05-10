@@ -1,0 +1,70 @@
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/usr/local/lib/python3.10/dist-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/usr/local/lib/python3.10/dist-packages/jupyter_core/utils/__init__.py", line 166, in wrapped
+    return loop.run_until_complete(inner)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/usr/local/lib/python3.10/dist-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/usr/local/lib/python3.10/dist-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/usr/local/lib/python3.10/dist-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+
+# crawling 50 data tweet dari twitter dengan keyword "Capres 2024" dan berbahasa Indonesia
+posts = api.search_tweets(q="Capres 2024", count = 20, tweet_mode = "extended", lang="id")
+
+# tampilkan 10 data teratas
+print("show the 20 recent tweets : \n")
+i = 1
+for tweet in posts[0:20] :
+    print(str(i) + ') '+ tweet.full_text + '\n')
+    i = i+1
+------------------
+
+
+[0;31m[0m
+[0;31mUnauthorized[0mTraceback (most recent call last)
+[0;32m<ipython-input-4-6e2cfb9c06f7>[0m in [0;36m<cell line: 2>[0;34m()[0m
+[1;32m      1[0m [0;31m# crawling 50 data tweet dari twitter dengan keyword "Capres 2024" dan berbahasa Indonesia[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0mposts[0m [0;34m=[0m [0mapi[0m[0;34m.[0m[0msearch_tweets[0m[0;34m([0m[0mq[0m[0;34m=[0m[0;34m"Capres 2024"[0m[0;34m,[0m [0mcount[0m [0;34m=[0m [0;36m20[0m[0;34m,[0m [0mtweet_mode[0m [0;34m=[0m [0;34m"extended"[0m[0;34m,[0m [0mlang[0m[0;34m=[0m[0;34m"id"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      3[0m [0;34m[0m[0m
+[1;32m      4[0m [0;31m# tampilkan 10 data teratas[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0mprint[0m[0;34m([0m[0;34m"show the 20 recent tweets : \n"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.10/dist-packages/tweepy/api.py[0m in [0;36mwrapper[0;34m(*args, **kwargs)[0m
+[1;32m     31[0m         [0;34m@[0m[0mfunctools[0m[0;34m.[0m[0mwraps[0m[0;34m([0m[0mmethod[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     32[0m         [0;32mdef[0m [0mwrapper[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 33[0;31m             [0;32mreturn[0m [0mmethod[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     34[0m         [0mwrapper[0m[0;34m.[0m[0mpagination_mode[0m [0;34m=[0m [0mmode[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     35[0m         [0;32mreturn[0m [0mwrapper[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.10/dist-packages/tweepy/api.py[0m in [0;36mwrapper[0;34m(*args, **kwargs)[0m
+[1;32m     44[0m             [0mkwargs[0m[0;34m[[0m[0;34m'payload_list'[0m[0;34m][0m [0;34m=[0m [0mpayload_list[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     45[0m             [0mkwargs[0m[0;34m[[0m[0;34m'payload_type'[0m[0;34m][0m [0;34m=[0m [0mpayload_type[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 46[0;31m             [0;32mreturn[0m [0mmethod[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     47[0m         [0mwrapper[0m[0;34m.[0m[0mpayload_list[0m [0;34m=[0m [0mpayload_list[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     48[0m         [0mwrapper[0m[0;34m.[0m[0mpayload_type[0m [0;34m=[0m [0mpayload_type[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.10/dist-packages/tweepy/api.py[0m in [0;36msearch_tweets[0;34m(self, q, **kwargs)[0m
+[1;32m   1307[0m         [0;34m.[0m[0;34m.[0m [0m_Twitter[0m[0;31m'[0m[0ms[0m [0mdocumentation[0m [0mon[0m [0mthe[0m [0mstandard[0m [0msearch[0m [0mAPI[0m[0;34m:[0m [0mhttps[0m[0;34m:[0m[0;34m//[0m[0mdeveloper[0m[0;34m.[0m[0mtwitter[0m[0;34m.[0m[0mcom[0m[0;34m/[0m[0men[0m[0;34m/[0m[0mdocs[0m[0;34m/[0m[0mtwitter[0m[0;34m-[0m[0mapi[0m[0;34m/[0m[0mv1[0m[0;34m/[0m[0mtweets[0m[0;34m/[0m[0msearch[0m[0;34m/[0m[0moverview[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1308[0m         """
+[0;32m-> 1309[0;31m         return self.request(
+[0m[1;32m   1310[0m             'GET', 'search/tweets', endpoint_parameters=(
+[1;32m   1311[0m                 [0;34m'q'[0m[0;34m,[0m [0;34m'geocode'[0m[0;34m,[0m [0;34m'lang'[0m[0;34m,[0m [0;34m'locale'[0m[0;34m,[0m [0;34m'result_type'[0m[0;34m,[0m [0;34m'count'[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.10/dist-packages/tweepy/api.py[0m in [0;36mrequest[0;34m(self, method, endpoint, endpoint_parameters, params, headers, json_payload, parser, payload_list, payload_type, post_data, files, require_auth, return_cursors, upload_api, use_cache, **kwargs)[0m
+[1;32m    261[0m                 [0;32mraise[0m [0mBadRequest[0m[0;34m([0m[0mresp[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    262[0m             [0;32mif[0m [0mresp[0m[0;34m.[0m[0mstatus_code[0m [0;34m==[0m [0;36m401[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 263[0;31m                 [0;32mraise[0m [0mUnauthorized[0m[0;34m([0m[0mresp[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    264[0m             [0;32mif[0m [0mresp[0m[0;34m.[0m[0mstatus_code[0m [0;34m==[0m [0;36m403[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    265[0m                 [0;32mraise[0m [0mForbidden[0m[0;34m([0m[0mresp[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mUnauthorized[0m: 401 Unauthorized
+89 - Invalid or expired token.
+
