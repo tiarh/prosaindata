@@ -92,23 +92,23 @@ finally:
 [0m
 [0;31mWebDriverException[0m: Message: unknown error: cannot find Chrome binary
 Stacktrace:
-#0 0x55aca11da133 <unknown>
-#1 0x55aca0f0e966 <unknown>
-#2 0x55aca0f35b57 <unknown>
-#3 0x55aca0f3407b <unknown>
-#4 0x55aca0f739ad <unknown>
-#5 0x55aca0f7318f <unknown>
-#6 0x55aca0f6a9a3 <unknown>
-#7 0x55aca0f3f46a <unknown>
-#8 0x55aca0f4055e <unknown>
-#9 0x55aca1199cae <unknown>
-#10 0x55aca119d8fe <unknown>
-#11 0x55aca11a6f20 <unknown>
-#12 0x55aca119e923 <unknown>
-#13 0x55aca1171c0e <unknown>
-#14 0x55aca11c1b08 <unknown>
-#15 0x55aca11c1c97 <unknown>
-#16 0x55aca11d2113 <unknown>
-#17 0x7f2afc478609 start_thread
+#0 0x557fddb7b133 <unknown>
+#1 0x557fdd8af966 <unknown>
+#2 0x557fdd8d6b57 <unknown>
+#3 0x557fdd8d507b <unknown>
+#4 0x557fdd9149ad <unknown>
+#5 0x557fdd91418f <unknown>
+#6 0x557fdd90b9a3 <unknown>
+#7 0x557fdd8e046a <unknown>
+#8 0x557fdd8e155e <unknown>
+#9 0x557fddb3acae <unknown>
+#10 0x557fddb3e8fe <unknown>
+#11 0x557fddb47f20 <unknown>
+#12 0x557fddb3f923 <unknown>
+#13 0x557fddb12c0e <unknown>
+#14 0x557fddb62b08 <unknown>
+#15 0x557fddb62c97 <unknown>
+#16 0x557fddb73113 <unknown>
+#17 0x7f928e2ff609 start_thread
 
 
