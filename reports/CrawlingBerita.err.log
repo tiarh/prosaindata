@@ -19,9 +19,11 @@ scrape_cbnc(3)
 ------------------
 
 ----- stdout -----
-done[1] > Jasa Marga
+done[1] > Korupsi Ba
 ----- stdout -----
-done[2] > Emiten Hot
+done[2] > Beres-bere
+----- stdout -----
+done[3] > Tega-tegan
 ------------------
 
 [0;31m[0m

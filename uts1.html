@@ -232,24 +232,6 @@ const thebe_selector_output = ".output, .cell_output"
 </a>
 </li>
       
-      
-      
-      
-      <li>
-<button onclick="initThebeSBT()"
-  class="btn btn-sm btn-launch-thebe dropdown-item"
-  title="Launch Thebe"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="btn__text-container">Live Code</span>
-</button>
-</li>
-      
   </ul>
 </div>
 
@@ -519,8 +501,8 @@ document.write(`
     {
         requestKernel: true,
         binderOptions: {
-            repo: "tiarh/prosaindata",
-            ref: "gh-pages",
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
         },
         codeMirrorConfig: {
             theme: "abcdef",

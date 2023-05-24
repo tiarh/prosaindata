@@ -233,24 +233,6 @@ const thebe_selector_output = ".output, .cell_output"
 </a>
 </li>
       
-      
-      
-      
-      <li>
-<button onclick="initThebeSBT()"
-  class="btn btn-sm btn-launch-thebe dropdown-item"
-  title="Launch Thebe"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="btn__text-container">Live Code</span>
-</button>
-</li>
-      
   </ul>
 </div>
 
@@ -441,26 +423,6 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/6.6 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.2/6.6 MB</span> <span class=" -Color -Color-Red">5.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
-     ━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.4/6.6 MB</span> <span class=" -Color -Color-Red">21.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">4.1/6.6 MB</span> <span class=" -Color -Color-Red">40.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">6.5/6.6 MB</span> <span class=" -Color -Color-Red">49.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">6.5/6.6 MB</span> <span class=" -Color -Color-Red">49.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">6.6/6.6 MB</span> <span class=" -Color -Color-Red">36.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/384.9 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">384.9/384.9 kB</span> <span class=" -Color -Color-Red">24.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/58.3 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">58.3/58.3 kB</span> <span class=" -Color -Color-Red">4.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
 Requirement already satisfied: selenium in /usr/local/lib/python3.10/dist-packages (4.9.1)
 Requirement already satisfied: urllib3[socks]&lt;3,&gt;=1.26 in /usr/local/lib/python3.10/dist-packages (from selenium) (1.26.15)
@@ -480,25 +442,15 @@ Requirement already satisfied: h11&lt;1,&gt;=0.9.0 in /usr/local/lib/python3.10/
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
-Collecting webdriver_manager
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading webdriver_manager-3.8.6-py2.py3-none-any.whl (27 kB)
+Requirement already satisfied: webdriver_manager in /usr/local/lib/python3.10/dist-packages (3.8.6)
 Requirement already satisfied: requests in /usr/local/lib/python3.10/dist-packages (from webdriver_manager) (2.27.1)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting python-dotenv (from webdriver_manager)
-  Downloading python_dotenv-1.0.0-py3-none-any.whl (19 kB)
+Requirement already satisfied: python-dotenv in /usr/local/lib/python3.10/dist-packages (from webdriver_manager) (1.0.0)
 Requirement already satisfied: tqdm in /usr/local/lib/python3.10/dist-packages (from webdriver_manager) (4.65.0)
 Requirement already satisfied: packaging in /usr/local/lib/python3.10/dist-packages (from webdriver_manager) (23.1)
 Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/local/lib/python3.10/dist-packages (from requests-&gt;webdriver_manager) (1.26.15)
 Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.10/dist-packages (from requests-&gt;webdriver_manager) (2022.12.7)
 Requirement already satisfied: charset-normalizer~=2.0.0 in /usr/local/lib/python3.10/dist-packages (from requests-&gt;webdriver_manager) (2.0.12)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.10/dist-packages (from requests-&gt;webdriver_manager) (3.4)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: python-dotenv, webdriver_manager
-Successfully installed python-dotenv-1.0.0 webdriver_manager-3.8.6
 </pre></div>
 </div>
 </div>
@@ -582,24 +534,24 @@ Successfully installed python-dotenv-1.0.0 webdriver_manager-3.8.6
 
 <span class="ne">WebDriverException</span>: Message: unknown error: cannot find Chrome binary
 <span class="ne">Stacktrace</span>:
-<span class="c1">#0 0x562e45422133 &lt;unknown&gt;</span>
-<span class="c1">#1 0x562e45156966 &lt;unknown&gt;</span>
-<span class="c1">#2 0x562e4517db57 &lt;unknown&gt;</span>
-<span class="c1">#3 0x562e4517c07b &lt;unknown&gt;</span>
-<span class="c1">#4 0x562e451bb9ad &lt;unknown&gt;</span>
-<span class="c1">#5 0x562e451bb18f &lt;unknown&gt;</span>
-<span class="c1">#6 0x562e451b29a3 &lt;unknown&gt;</span>
-<span class="c1">#7 0x562e4518746a &lt;unknown&gt;</span>
-<span class="c1">#8 0x562e4518855e &lt;unknown&gt;</span>
-<span class="c1">#9 0x562e453e1cae &lt;unknown&gt;</span>
-<span class="c1">#10 0x562e453e58fe &lt;unknown&gt;</span>
-<span class="c1">#11 0x562e453eef20 &lt;unknown&gt;</span>
-<span class="c1">#12 0x562e453e6923 &lt;unknown&gt;</span>
-<span class="c1">#13 0x562e453b9c0e &lt;unknown&gt;</span>
-<span class="c1">#14 0x562e45409b08 &lt;unknown&gt;</span>
-<span class="c1">#15 0x562e45409c97 &lt;unknown&gt;</span>
-<span class="c1">#16 0x562e4541a113 &lt;unknown&gt;</span>
-<span class="c1">#17 0x7fc139e3f609 start_thread</span>
+<span class="c1">#0 0x560232ded133 &lt;unknown&gt;</span>
+<span class="c1">#1 0x560232b21966 &lt;unknown&gt;</span>
+<span class="c1">#2 0x560232b48b57 &lt;unknown&gt;</span>
+<span class="c1">#3 0x560232b4707b &lt;unknown&gt;</span>
+<span class="c1">#4 0x560232b869ad &lt;unknown&gt;</span>
+<span class="c1">#5 0x560232b8618f &lt;unknown&gt;</span>
+<span class="c1">#6 0x560232b7d9a3 &lt;unknown&gt;</span>
+<span class="c1">#7 0x560232b5246a &lt;unknown&gt;</span>
+<span class="c1">#8 0x560232b5355e &lt;unknown&gt;</span>
+<span class="c1">#9 0x560232daccae &lt;unknown&gt;</span>
+<span class="c1">#10 0x560232db08fe &lt;unknown&gt;</span>
+<span class="c1">#11 0x560232db9f20 &lt;unknown&gt;</span>
+<span class="c1">#12 0x560232db1923 &lt;unknown&gt;</span>
+<span class="c1">#13 0x560232d84c0e &lt;unknown&gt;</span>
+<span class="c1">#14 0x560232dd4b08 &lt;unknown&gt;</span>
+<span class="c1">#15 0x560232dd4c97 &lt;unknown&gt;</span>
+<span class="c1">#16 0x560232de5113 &lt;unknown&gt;</span>
+<span class="c1">#17 0x7f6748f13609 start_thread</span>
 </pre></div>
 </div>
 </div>
@@ -1537,8 +1489,8 @@ Name: Topik, dtype: int64
     {
         requestKernel: true,
         binderOptions: {
-            repo: "tiarh/prosaindata",
-            ref: "gh-pages",
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
         },
         codeMirrorConfig: {
             theme: "abcdef",
