@@ -210,6 +210,37 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/docs/Latent-Semantic-Analysis.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -392,6 +423,26 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/6.6 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.2/6.6 MB</span> <span class=" -Color -Color-Red">5.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
+     ━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.4/6.6 MB</span> <span class=" -Color -Color-Red">21.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">4.1/6.6 MB</span> <span class=" -Color -Color-Red">40.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">6.5/6.6 MB</span> <span class=" -Color -Color-Red">49.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">6.5/6.6 MB</span> <span class=" -Color -Color-Red">49.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">6.6/6.6 MB</span> <span class=" -Color -Color-Red">36.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/384.9 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">384.9/384.9 kB</span> <span class=" -Color -Color-Red">24.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/58.3 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">58.3/58.3 kB</span> <span class=" -Color -Color-Red">4.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
 Requirement already satisfied: selenium in /usr/local/lib/python3.10/dist-packages (4.9.1)
 Requirement already satisfied: urllib3[socks]&lt;3,&gt;=1.26 in /usr/local/lib/python3.10/dist-packages (from selenium) (1.26.15)
@@ -411,15 +462,25 @@ Requirement already satisfied: h11&lt;1,&gt;=0.9.0 in /usr/local/lib/python3.10/
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
-Requirement already satisfied: webdriver_manager in /usr/local/lib/python3.10/dist-packages (3.8.6)
+Collecting webdriver_manager
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading webdriver_manager-3.8.6-py2.py3-none-any.whl (27 kB)
 Requirement already satisfied: requests in /usr/local/lib/python3.10/dist-packages (from webdriver_manager) (2.27.1)
-Requirement already satisfied: python-dotenv in /usr/local/lib/python3.10/dist-packages (from webdriver_manager) (1.0.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting python-dotenv (from webdriver_manager)
+  Downloading python_dotenv-1.0.0-py3-none-any.whl (19 kB)
 Requirement already satisfied: tqdm in /usr/local/lib/python3.10/dist-packages (from webdriver_manager) (4.65.0)
 Requirement already satisfied: packaging in /usr/local/lib/python3.10/dist-packages (from webdriver_manager) (23.1)
 Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/local/lib/python3.10/dist-packages (from requests-&gt;webdriver_manager) (1.26.15)
 Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.10/dist-packages (from requests-&gt;webdriver_manager) (2022.12.7)
 Requirement already satisfied: charset-normalizer~=2.0.0 in /usr/local/lib/python3.10/dist-packages (from requests-&gt;webdriver_manager) (2.0.12)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.10/dist-packages (from requests-&gt;webdriver_manager) (3.4)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: python-dotenv, webdriver_manager
+Successfully installed python-dotenv-1.0.0 webdriver_manager-3.8.6
 </pre></div>
 </div>
 </div>
@@ -503,24 +564,24 @@ Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.10/d
 
 <span class="ne">WebDriverException</span>: Message: unknown error: cannot find Chrome binary
 <span class="ne">Stacktrace</span>:
-<span class="c1">#0 0x55d2940f4133 &lt;unknown&gt;</span>
-<span class="c1">#1 0x55d293e28966 &lt;unknown&gt;</span>
-<span class="c1">#2 0x55d293e4fb57 &lt;unknown&gt;</span>
-<span class="c1">#3 0x55d293e4e07b &lt;unknown&gt;</span>
-<span class="c1">#4 0x55d293e8d9ad &lt;unknown&gt;</span>
-<span class="c1">#5 0x55d293e8d18f &lt;unknown&gt;</span>
-<span class="c1">#6 0x55d293e849a3 &lt;unknown&gt;</span>
-<span class="c1">#7 0x55d293e5946a &lt;unknown&gt;</span>
-<span class="c1">#8 0x55d293e5a55e &lt;unknown&gt;</span>
-<span class="c1">#9 0x55d2940b3cae &lt;unknown&gt;</span>
-<span class="c1">#10 0x55d2940b78fe &lt;unknown&gt;</span>
-<span class="c1">#11 0x55d2940c0f20 &lt;unknown&gt;</span>
-<span class="c1">#12 0x55d2940b8923 &lt;unknown&gt;</span>
-<span class="c1">#13 0x55d29408bc0e &lt;unknown&gt;</span>
-<span class="c1">#14 0x55d2940dbb08 &lt;unknown&gt;</span>
-<span class="c1">#15 0x55d2940dbc97 &lt;unknown&gt;</span>
-<span class="c1">#16 0x55d2940ec113 &lt;unknown&gt;</span>
-<span class="c1">#17 0x7f159e617609 start_thread</span>
+<span class="c1">#0 0x562e45422133 &lt;unknown&gt;</span>
+<span class="c1">#1 0x562e45156966 &lt;unknown&gt;</span>
+<span class="c1">#2 0x562e4517db57 &lt;unknown&gt;</span>
+<span class="c1">#3 0x562e4517c07b &lt;unknown&gt;</span>
+<span class="c1">#4 0x562e451bb9ad &lt;unknown&gt;</span>
+<span class="c1">#5 0x562e451bb18f &lt;unknown&gt;</span>
+<span class="c1">#6 0x562e451b29a3 &lt;unknown&gt;</span>
+<span class="c1">#7 0x562e4518746a &lt;unknown&gt;</span>
+<span class="c1">#8 0x562e4518855e &lt;unknown&gt;</span>
+<span class="c1">#9 0x562e453e1cae &lt;unknown&gt;</span>
+<span class="c1">#10 0x562e453e58fe &lt;unknown&gt;</span>
+<span class="c1">#11 0x562e453eef20 &lt;unknown&gt;</span>
+<span class="c1">#12 0x562e453e6923 &lt;unknown&gt;</span>
+<span class="c1">#13 0x562e453b9c0e &lt;unknown&gt;</span>
+<span class="c1">#14 0x562e45409b08 &lt;unknown&gt;</span>
+<span class="c1">#15 0x562e45409c97 &lt;unknown&gt;</span>
+<span class="c1">#16 0x562e4541a113 &lt;unknown&gt;</span>
+<span class="c1">#17 0x7fc139e3f609 start_thread</span>
 </pre></div>
 </div>
 </div>
