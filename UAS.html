@@ -65,6 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'UAS';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Latent Semantic Analysis" href="Latent-Semantic-Analysis.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -156,7 +157,7 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">TUGAS</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="CrawlingBerita.html">Crawling Berita</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CrawlingPTA.html">Crawling PTA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CrawlingTwitter.html">Crawling Twitter</a></li>
@@ -165,6 +166,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="NetworkxDigraph.html">NetworkxDigraph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Text-Summarization.html">Text Summarization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Latent-Semantic-Analysis.html">Latent Semantic Analysis</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">UAS</a></li>
 </ul>
 
     </div>
@@ -389,25 +391,23 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">UAS</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#get-and-prepare-data">Get and prepare Data</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tuning-data">tuning data</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting">Plotting</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#split-data">Split Data</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#model-knn">model knn</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-predict-knn">Fit &amp; Predict KNN</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mse">mse</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#result">result</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mape">MAPE</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-model">Naive Bayes Model</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-predict-naive-bayes">Fit &amp; Predict Naive Bayes</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-the-predicted-values-and-actual-values">Plotting the predicted values and actual values</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">mse</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">MAPE</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-model">Random Forest Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-and-prepare-data">Get and prepare Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuning-data">tuning data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting">Plotting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#split-data">Split Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-knn">model knn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-predict-knn">Fit &amp; Predict KNN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mse">mse</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#result">result</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mape">MAPE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-model">Naive Bayes Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-predict-naive-bayes">Fit &amp; Predict Naive Bayes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-the-predicted-values-and-actual-values">Plotting the predicted values and actual values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">mse</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">MAPE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-model">Random Forest Model</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -418,13 +418,12 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="section" id="uas">
+  <div class="tex2jax_ignore mathjax_ignore section" id="uas">
 <h1>UAS<a class="headerlink" href="#uas" title="Permalink to this heading">#</a></h1>
 <p>Ikhtiar Hidayatullah (200411100180)
 Denny Wahyudi Ramadhon (200411100170)</p>
-</div>
 <div class="section" id="get-and-prepare-data">
-<h1>Get and prepare Data<a class="headerlink" href="#get-and-prepare-data" title="Permalink to this heading">#</a></h1>
+<h2>Get and prepare Data<a class="headerlink" href="#get-and-prepare-data" title="Permalink to this heading">#</a></h2>
 <p><a class="github reference external" href="https://github.com/tiarh/kelompokpro">tiarh/kelompokpro</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -443,7 +442,7 @@ Denny Wahyudi Ramadhon (200411100170)</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-edbed61a-9614-4344-a702-9bd6a339923a">
+  <div id="df-b0cc4f4f-639d-4381-8c24-ef51f8d56bf3">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -546,7 +545,7 @@ Denny Wahyudi Ramadhon (200411100170)</p>
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-edbed61a-9614-4344-a702-9bd6a339923a')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-b0cc4f4f-639d-4381-8c24-ef51f8d56bf3')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
         
@@ -597,12 +596,12 @@ Denny Wahyudi Ramadhon (200411100170)</p>
 
       <script>
         const buttonEl =
-          document.querySelector('#df-edbed61a-9614-4344-a702-9bd6a339923a button.colab-df-convert');
+          document.querySelector('#df-b0cc4f4f-639d-4381-8c24-ef51f8d56bf3 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-edbed61a-9614-4344-a702-9bd6a339923a');
+          const element = document.querySelector('#df-b0cc4f4f-639d-4381-8c24-ef51f8d56bf3');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -667,7 +666,7 @@ Denny Wahyudi Ramadhon (200411100170)</p>
 </div>
 </div>
 <div class="section" id="tuning-data">
-<h1>tuning data<a class="headerlink" href="#tuning-data" title="Permalink to this heading">#</a></h1>
+<h2>tuning data<a class="headerlink" href="#tuning-data" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_steps</span> <span class="o">=</span> <span class="mi">5</span>
@@ -723,7 +722,7 @@ Denny Wahyudi Ramadhon (200411100170)</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-211729d1-644a-4f93-8a8d-dab53e7c568f">
+  <div id="df-7fcd567b-a90d-42f1-b159-1c34dfd7a723">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -800,7 +799,7 @@ Denny Wahyudi Ramadhon (200411100170)</p>
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-211729d1-644a-4f93-8a8d-dab53e7c568f')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-7fcd567b-a90d-42f1-b159-1c34dfd7a723')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
         
@@ -851,12 +850,12 @@ Denny Wahyudi Ramadhon (200411100170)</p>
 
       <script>
         const buttonEl =
-          document.querySelector('#df-211729d1-644a-4f93-8a8d-dab53e7c568f button.colab-df-convert');
+          document.querySelector('#df-7fcd567b-a90d-42f1-b159-1c34dfd7a723 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-211729d1-644a-4f93-8a8d-dab53e7c568f');
+          const element = document.querySelector('#df-7fcd567b-a90d-42f1-b159-1c34dfd7a723');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -879,7 +878,7 @@ Denny Wahyudi Ramadhon (200411100170)</p>
 </div>
 </div>
 <div class="section" id="plotting">
-<h1>Plotting<a class="headerlink" href="#plotting" title="Permalink to this heading">#</a></h1>
+<h2>Plotting<a class="headerlink" href="#plotting" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -905,7 +904,7 @@ Denny Wahyudi Ramadhon (200411100170)</p>
 </div>
 </div>
 <div class="section" id="preprocessing">
-<h1>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this heading">#</a></h1>
+<h2>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
@@ -936,7 +935,7 @@ Denny Wahyudi Ramadhon (200411100170)</p>
 </div>
 </div>
 <div class="section" id="split-data">
-<h1>Split Data<a class="headerlink" href="#split-data" title="Permalink to this heading">#</a></h1>
+<h2>Split Data<a class="headerlink" href="#split-data" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
@@ -947,7 +946,7 @@ Denny Wahyudi Ramadhon (200411100170)</p>
 </div>
 </div>
 <div class="section" id="model-knn">
-<h1>model knn<a class="headerlink" href="#model-knn" title="Permalink to this heading">#</a></h1>
+<h2>model knn<a class="headerlink" href="#model-knn" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import knn</span>
@@ -959,7 +958,7 @@ Denny Wahyudi Ramadhon (200411100170)</p>
 </div>
 </div>
 <div class="section" id="fit-predict-knn">
-<h1>Fit &amp; Predict KNN<a class="headerlink" href="#fit-predict-knn" title="Permalink to this heading">#</a></h1>
+<h2>Fit &amp; Predict KNN<a class="headerlink" href="#fit-predict-knn" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
@@ -970,7 +969,7 @@ Denny Wahyudi Ramadhon (200411100170)</p>
 </div>
 </div>
 <div class="section" id="mse">
-<h1>mse<a class="headerlink" href="#mse" title="Permalink to this heading">#</a></h1>
+<h2>mse<a class="headerlink" href="#mse" title="Permalink to this heading">#</a></h2>
 <div class="math notranslate nohighlight">
 \[ \text{MSE} = \frac{1}{n} \sum_{i=0}^n (y_i - \hat{y}_i)^2\]</div>
 <div class="cell docutils container">
@@ -988,7 +987,7 @@ Denny Wahyudi Ramadhon (200411100170)</p>
 </div>
 </div>
 <div class="section" id="result">
-<h1>result<a class="headerlink" href="#result" title="Permalink to this heading">#</a></h1>
+<h2>result<a class="headerlink" href="#result" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_test</span><span class="o">.</span><span class="n">shape</span>
@@ -1015,7 +1014,7 @@ Denny Wahyudi Ramadhon (200411100170)</p>
 </div>
 </div>
 <div class="section" id="mape">
-<h1>MAPE<a class="headerlink" href="#mape" title="Permalink to this heading">#</a></h1>
+<h2>MAPE<a class="headerlink" href="#mape" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_percentage_error</span>
@@ -1046,7 +1045,7 @@ Denny Wahyudi Ramadhon (200411100170)</p>
 </div>
 </div>
 <div class="section" id="naive-bayes-model">
-<h1>Naive Bayes Model<a class="headerlink" href="#naive-bayes-model" title="Permalink to this heading">#</a></h1>
+<h2>Naive Bayes Model<a class="headerlink" href="#naive-bayes-model" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
@@ -1062,7 +1061,7 @@ Denny Wahyudi Ramadhon (200411100170)</p>
 </div>
 </div>
 <div class="section" id="fit-predict-naive-bayes">
-<h1>Fit &amp; Predict Naive Bayes<a class="headerlink" href="#fit-predict-naive-bayes" title="Permalink to this heading">#</a></h1>
+<h2>Fit &amp; Predict Naive Bayes<a class="headerlink" href="#fit-predict-naive-bayes" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Training the model</span>
@@ -1076,7 +1075,7 @@ Denny Wahyudi Ramadhon (200411100170)</p>
 </div>
 </div>
 <div class="section" id="plotting-the-predicted-values-and-actual-values">
-<h1>Plotting the predicted values and actual values<a class="headerlink" href="#plotting-the-predicted-values-and-actual-values" title="Permalink to this heading">#</a></h1>
+<h2>Plotting the predicted values and actual values<a class="headerlink" href="#plotting-the-predicted-values-and-actual-values" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotting the predicted values and actual values</span>
@@ -1097,7 +1096,7 @@ Denny Wahyudi Ramadhon (200411100170)</p>
 </div>
 </div>
 <div class="section" id="id1">
-<h1>mse<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<h2>mse<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculating MSE</span>
@@ -1114,7 +1113,7 @@ Denny Wahyudi Ramadhon (200411100170)</p>
 </div>
 </div>
 <div class="section" id="id2">
-<h1>MAPE<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h1>
+<h2>MAPE<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculating MAPE</span>
@@ -1131,7 +1130,7 @@ Denny Wahyudi Ramadhon (200411100170)</p>
 </div>
 </div>
 <div class="section" id="random-forest-model">
-<h1>Random Forest Model<a class="headerlink" href="#random-forest-model" title="Permalink to this heading">#</a></h1>
+<h2>Random Forest Model<a class="headerlink" href="#random-forest-model" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
@@ -1165,7 +1164,7 @@ Denny Wahyudi Ramadhon (200411100170)</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean Squared Error (MSE): 2293.1001530612252
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean Squared Error (MSE): 2178.1985714285715
 </pre></div>
 </div>
 </div>
@@ -1178,8 +1177,9 @@ Denny Wahyudi Ramadhon (200411100170)</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean Absolute Percentage Error (MAPE): 0.018146414959875946
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean Absolute Percentage Error (MAPE): 0.017625579787645316
 </pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -1216,6 +1216,15 @@ Denny Wahyudi Ramadhon (200411100170)</p>
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="Latent-Semantic-Analysis.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Latent Semantic Analysis</p>
+      </div>
+    </a>
 </div></div>
   
 </div>
@@ -1234,25 +1243,23 @@ Denny Wahyudi Ramadhon (200411100170)</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">UAS</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#get-and-prepare-data">Get and prepare Data</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tuning-data">tuning data</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting">Plotting</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#split-data">Split Data</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#model-knn">model knn</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-predict-knn">Fit &amp; Predict KNN</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mse">mse</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#result">result</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mape">MAPE</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-model">Naive Bayes Model</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-predict-naive-bayes">Fit &amp; Predict Naive Bayes</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-the-predicted-values-and-actual-values">Plotting the predicted values and actual values</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">mse</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">MAPE</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-model">Random Forest Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-and-prepare-data">Get and prepare Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuning-data">tuning data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting">Plotting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#split-data">Split Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-knn">model knn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-predict-knn">Fit &amp; Predict KNN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mse">mse</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#result">result</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mape">MAPE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-model">Naive Bayes Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-predict-naive-bayes">Fit &amp; Predict Naive Bayes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-the-predicted-values-and-actual-values">Plotting the predicted values and actual values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">mse</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">MAPE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-model">Random Forest Model</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
